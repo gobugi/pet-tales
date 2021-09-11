@@ -18,7 +18,7 @@ const removeUser = () => {
   };
 };
 
-// Define Thunks (login/logout)
+// Define Thunks (login/logout/restoreUser)
 export const login = (user) => async (dispatch) => {
   const { credential, password } = user;
   const response = await csrfFetch('/api/session', {
@@ -38,6 +38,13 @@ export const logout = () => async (dispatch) => {
     method: 'DELETE'
   });
   dispatch(removeUser());
+  return response;
+};
+
+export const restoreUser = () => async dispatch => {
+  const response = await csrfFetch('/api/session');
+  const data = await response.json();
+  dispatch(setUser(data.user));
   return response;
 };
 
