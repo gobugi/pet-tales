@@ -1,20 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+
 body {
   background-color: #EFEFEF;
   padding-right: 10%;
-  padding-left: 10%;
+  padding-left: 5%;
 }
 
 .navHome {
+  margin-top: 2%;
   font-family: "Helvetica Neue", sans-serif;
-  font-size: 81%;
+  font-size: 20px;
   text-decoration: none;
-  float: left;
+  position: relative;
+  top: 22px;
+}
+.navHome:visited {
+  color: black;
 }
 
 .navButton {
   font-family: "Helvetica Neue", sans-serif;
-  font-size: 81%;
+  font-size: 20px;
   text-decoration: none;
   float: right;
   margin-left: 4%;
+  position: relative;
+  top: 22px;
+}
+.navButton:visited {
+  color: black;
+}
+
+.logo {
+  height: 120px;
+  width: 120px;
+  float: left;
+  margin-right: 4%;
+  position: relative;
+  top: -6px;
+}
+
+.fas.fa-user-circle.fa-3x {
+  color: #2B5292;
+  float: right;
+  position: relative;
+  top: 8px;
+}
+
+.profile-dropdown {
+  float: right;
+}
+
+ul.profile-dropdown {
+  font-family: 'Playfair Display', serif;
+  font-weight: 550;
+  color: #2B5292;
+  font-size: 20px;
+  text-align: right;
+  padding: 3px;
+  cursor: default;
+}
+
+.logoutButton {
+  height:32px;
+  width:128px;
+  font-family: 'Playfair Display', serif;
+  font-weight: 550;
+  color: #2B5292;
+  font-size: 20px;
+  padding: 0px;
+}
+
+.fas.fa-sign-out-alt {
+  color: #2B5292;
 }
