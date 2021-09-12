@@ -24,6 +24,9 @@ function Navigation({ isLoaded }){
   return (
     <ul style={{listStyleType: 'none'}}>
       <li>
+        <img className="logo" src="/logo.png" alt="Logo" />
+      </li>
+      <li>
         <NavLink className="navHome" exact to="/">Home</NavLink>
         {isLoaded && sessionLinks}
       </li>
