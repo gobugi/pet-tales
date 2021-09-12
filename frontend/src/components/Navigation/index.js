@@ -22,7 +22,7 @@ function Navigation({ isLoaded }){
   }
 
   return (
-    <ul>
+    <ul style={{listStyleType: 'none'}}>
       <li>
         <NavLink exact to="/">Home</NavLink>
         {isLoaded && sessionLinks}
