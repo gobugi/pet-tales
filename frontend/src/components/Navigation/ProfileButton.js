@@ -36,6 +36,7 @@ function ProfileButton({ user }) {
           <ul className="profile-dropdown" style={{listStyleType: 'none'}}>
             <li>{user.username}</li>
             <li>{user.email}</li>
+            <li id="line">-</li>
             <li>
               <button className="logoutButton" onClick={logout}>
                 <i className="fas fa-sign-out-alt"></i> Log Out
