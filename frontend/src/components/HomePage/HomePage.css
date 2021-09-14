@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Slab:ital,wght@0,100;1,100&family=Roboto+Slab:wght@100&display=swap');
+
+.container {
+  margin-left: 0;
+  margin-right: 0;
+  text-align:left;
+  position: absolute;
+  top: 134px;
+  height: 600px;
+  left: 0px;
+  right: 0px;
+  min-width: 1920px;
+}
+
+.darkOverlay {
+  margin-left: 0;
+  margin-right: 0;
+  text-align:left;
+  position: absolute;
+  height: 600px;
+  left: 0px;
+  right: 0px;
+  background: linear-gradient(to right, transparent, #160d0d9d);
+}
+
+#line1 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 550;
+  color: #EFEFEF;
+  font-size: 100px;
+  text-align: left;
+  padding: 0px;
+  margin-top: 120px;
+}
+
+#line2 {
+  font-family: 'Roboto Slab', serif;
+  font-weight: 100;
+  color: #EFEFEF;
+  font-size: 60px;
+  text-align: left;
+  padding: 0px;
+  font-style: italic;
+  margin-left: 125px;
+}
