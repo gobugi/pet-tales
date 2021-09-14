@@ -5,12 +5,13 @@
   margin-left: 0;
   margin-right: 0;
   text-align:left;
-  position: absolute;
+  position: relative;
   top: 134px;
   height: 600px;
   left: 0px;
   right: 0px;
-  min-width: 1920px;
+  min-width: 1346px;
+  z-index: 900;
 }
 
 .darkOverlay {
