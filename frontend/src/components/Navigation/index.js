@@ -14,25 +14,21 @@ function Navigation({ isLoaded }){
     );
   } else {
     sessionLinks = (
-      <>
-        <NavLink className="navButton" to="/login">Log In</NavLink>
-        <div className="navButton">|</div>
+      <div className='divNavButtons'>
         <NavLink className="navButton" to="/signup">Sign Up</NavLink>
-      </>
+        <div className="navButton">|</div>
+        <NavLink className="navButton" to="/login">Log In</NavLink>
+      </div>
     );
   }
 
   return (
     <div className="navContainer">
-      <ul style={{listStyleType: 'none'}}>
-        <li>
-          <img className="logo" src="/images/logo.png" alt="Logo" />
-        </li>
-        <li>
-          <NavLink className="navHome" exact to="/">Home</NavLink>
-          {isLoaded && sessionLinks}
-        </li>
-      </ul>
+      <img className="logo" src="/images/logo.png" alt="Logo" />
+      <div className="divHome">
+        <NavLink className="navHome" exact to="/">Home</NavLink>
+      </div>
+      {isLoaded && sessionLinks}
     </div>
   );
 }

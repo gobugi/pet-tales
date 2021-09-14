@@ -17,11 +17,11 @@ function App() {
   return (
     <>
       <Navigation isLoaded={isLoaded} />
-      <Route exact path='/'>
-        <HomePage />
-      </Route>
       {isLoaded && (
         <Switch>
+          <Route exact path='/'>
+            <HomePage />
+          </Route>
           <Route path="/login">
             <LoginFormPage />
           </Route>
