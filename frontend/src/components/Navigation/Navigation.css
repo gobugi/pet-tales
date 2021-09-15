@@ -9,7 +9,7 @@ body { margin: 0; padding: 0; background-color: #EFEFEF; max-width: 100%; overfl
   width: 100%;
   height: 134px;
   z-index: 950;
-  min-width: 1200px;
+  min-width: 1100px;
 }
 
 .divHome {
@@ -67,6 +67,7 @@ body { margin: 0; padding: 0; background-color: #EFEFEF; max-width: 100%; overfl
   position: relative;
   top: 20px;
   margin-right: 265px;
+  cursor: pointer;
 }
 
 .profile-dropdown {
@@ -94,6 +95,7 @@ ul.profile-dropdown {
   color: #2B5292;
   font-size: 20px;
   padding: 0px;
+  cursor: pointer;
 }
 
 .fas.fa-sign-out-alt {
