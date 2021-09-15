@@ -15,3 +15,28 @@
   font-weight: 550;
   font-size: 20px;
 }
+
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+
+.formContainer {
+  margin-left: 0;
+  margin-right: 0;
+  position: absolute;
+  text-align: center;
+  left: 0px;
+  right: 0px;
+  height: 100%;
+  z-index: 900;
+  background-color: #2B5292;
+  color: #EFEFEF;
+  font-family: 'Playfair Display', serif;
+  font-weight: 550;
+  font-size: 20px;
+}
+
+form {
+  text-align:right;
+  width: 350px;
+  margin-left: 40%;
+}
