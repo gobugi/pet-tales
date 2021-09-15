@@ -9,7 +9,7 @@ body { margin: 0; padding: 0; background-color: #EFEFEF; max-width: 100%; overfl
   width: 100%;
   height: 134px;
   z-index: 950;
-  min-width: 1346px;
+  min-width: 1200px;
 }
 
 .divHome {
