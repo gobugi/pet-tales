@@ -48,8 +48,8 @@ button {
   color: #2B5292;
   margin-top: 15px;
   border-radius: 8px;
-  height: 38px;
-  width: 105px;;
+  height: 33px;
+  width: fit-content;
   text-align: center;
   vertical-align: middle;
 }

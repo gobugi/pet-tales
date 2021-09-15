@@ -34,7 +34,7 @@ function ProfileButton({ user }) {
       {showMenu && (
         <div>
           <ul className="profile-dropdown" style={{listStyleType: 'none'}}>
-            <li>{user.username}</li>
+            <li><a href={`/users/${user.id}`} style={{textDecoration: 'none'}}>{user.username}</a></li>
             <li>{user.email}</li>
             <li>
               <button className="logoutButton" onClick={logout}>
@@ -47,5 +47,8 @@ function ProfileButton({ user }) {
     </>
   );
 }
+
+
+
 
 export default ProfileButton;

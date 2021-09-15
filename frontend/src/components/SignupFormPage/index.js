@@ -14,7 +14,7 @@ function SignupFormPage() {
   const [errors, setErrors] = useState([]);
 
   if (sessionUser) return (
-    <Redirect to={`/users/${sessionUser.id}`} />
+    <Redirect to="/" />
   );
 
   const handleSubmit = (e) => {
