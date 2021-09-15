@@ -86,11 +86,6 @@ ul.profile-dropdown {
   cursor: default;
 }
 
-#line {
-  color: #EFEFEF;
-  font-size: 5px;
-}
-
 .logoutButton {
   height:32px;
   width:128px;
