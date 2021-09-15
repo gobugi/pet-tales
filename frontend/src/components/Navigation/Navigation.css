@@ -2,6 +2,7 @@
 
 body { margin: 0; padding: 0; background-color: #EFEFEF; max-width: 100%; overflow-x: hidden;}
 
+
 .navContainer {
   position: fixed;
   background-color: #EFEFEF;
@@ -85,6 +86,13 @@ ul.profile-dropdown {
   text-align: right;
   padding: 3px;
   cursor: default;
+}
+
+li > a:link {
+  color:  #2B5292;
+}
+li > a:visited {
+  color:  #2B5292;
 }
 
 .logoutButton {
