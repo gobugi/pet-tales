@@ -7,17 +7,22 @@ import './HomePage.css';
 function HomePage() {
   return (
     <>
-        <div className="container" style={{backgroundImage: 'url(/images/heroimage.png)', backgroundRepeat: 'no-repeat', backgroundSize: '100%'}}>
-          <div className="darkOverlay">
-              <div id='line1'>
-                a place for pet-lovers...
-                <div id='line2'>What's your story?</div>
-              </div>
-          </div>
+      <div className="container" style={{backgroundImage: 'url(/images/heroimage.png)', backgroundRepeat: 'no-repeat', backgroundSize: '100%'}}>
+        <div className="darkOverlay">
+            <div id='line1'>
+              a place for pet-lovers...
+              <div id='line2'>What's your story?</div>
+            </div>
         </div>
+      </div>
+      <div className='homeStoriesContainer'>
+        
+      </div>
     </>
   )
 }
+
+
 
 
 
