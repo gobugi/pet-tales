@@ -3,8 +3,8 @@
 .formContainer {
   margin-left: 0;
   margin-right: 0;
-  text-align:center;
   position: fixed;
+  text-align: center;
   left: 0px;
   right: 0px;
   height: 100%;
@@ -16,3 +16,9 @@
   font-size: 20px;
 }
 
+form {
+  text-align:right;
+  width: 350px;
+  margin-left: 40%;
+  margin-top: 60px;
+}
