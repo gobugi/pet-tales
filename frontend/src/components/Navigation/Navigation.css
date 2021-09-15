@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
 
-body { margin: 0; padding: 0; background-color: #EFEFEF;}
+body { margin: 0; padding: 0; background-color: #EFEFEF; max-width: 100%; overflow-x: hidden;}
 
 .navContainer {
   position: fixed;
