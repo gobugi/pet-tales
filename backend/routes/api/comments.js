@@ -5,6 +5,12 @@ const { Comment } = require('../../db/models');
 
 const router = express.Router();
 
+// Get Comment
+router.get('/', asyncHandler(async (req, res) => {
+  const comments = await Comment.findAll();
+  res.json(comments);
+}));
+
 
 // Create Comment
 router.post('/', asyncHandler(async (req, res) => {
