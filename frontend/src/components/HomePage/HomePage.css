@@ -45,3 +45,27 @@
   font-style: italic;
   margin-left: 125px;
 }
+
+.homeStoriesContainer {
+  margin-left: 0;
+  margin-right: 0;
+  text-align:left;
+  position: relative;
+  top: 134px;
+  height: 600px;
+  left: 0px;
+  right: 0px;
+  min-width: 1346px;
+  z-index: 900;
+}
+
+.storyImages {
+  width: 500px;
+  height: 100%;
+}
+
+
+
+.homeStoriesContainer {
+  text-align: center;
+}

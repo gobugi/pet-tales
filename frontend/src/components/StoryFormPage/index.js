@@ -64,6 +64,17 @@ function StoryFormPage({ user }) {
         </div>
         <div>
           <label>
+            Image URL
+            <input
+              type="text"
+              // value={credential}
+              // onChange={(e) => setCredential(e.target.value)}
+              required
+            />
+          </label>
+        </div>
+        <div>
+          <label>
             Comment
             <textarea
               // type="text"

@@ -9,7 +9,7 @@ module.exports = {
      */
     await queryInterface.bulkInsert('Stories', [
       {
-        imageUrl: 'https://images.unsplash.com/photo-1599572739984-8ae9388f23b5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80',
+        imageUrl: 'https://images.unsplash.com/photo-1599572739984-8ae9388f23b5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1400&q=80',
         authorId: 1,
         title: 'My cat played with leaves outside',
         body: 'Lectus sit amet est placerat in. Egestas purus viverra accumsan in nisl nisi scelerisque eu. At consectetur lorem donec massa. Neque ornare aenean euismod elementum nisi quis eleifend. Sapien nec sagittis aliquam malesuada bibendum arcu vitae elementum. A iaculis at erat pellentesque adipiscing commodo elit at imperdiet. Ipsum dolor sit amet consectetur adipiscing elit duis tristique sollicitudin. Et ligula ullamcorper malesuada proin libero nunc consequat interdum varius. Commodo nulla facilisi nullam vehicula ipsum. Eu mi bibendum neque egestas congue quisque. Odio eu feugiat pretium nibh ipsum consequat. Et malesuada fames ac turpis egestas integer eget. Vulputate enim nulla aliquet porttitor lacus luctus accumsan tortor posuere.',
@@ -17,7 +17,7 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        imageUrl: 'https://images.unsplash.com/photo-1585937250791-efc81fc76e43?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80',
+        imageUrl: 'https://images.unsplash.com/photo-1585937250791-efc81fc76e43?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1400&q=80',
         authorId: 2,
         title: 'My cat watched me play Overwatch on my gaming pc',
         body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Aliquam malesuada bibendum arcu vitae elementum curabitur. Vulputate sapien nec sagittis aliquam. Semper quis lectus nulla at. Sed lectus vestibulum mattis ullamcorper. Sed tempus urna et pharetra. Viverra ipsum nunc aliquet bibendum enim. Nibh tellus molestie nunc non. Purus ut faucibus pulvinar elementum integer enim. Malesuada nunc vel risus commodo viverra maecenas. Sed blandit libero volutpat sed cras ornare arcu dui. Pulvinar etiam non quam lacus suspendisse faucibus interdum.',
@@ -25,7 +25,7 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        imageUrl: 'https://images.unsplash.com/photo-1488015795646-7e22a773d72a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80',
+        imageUrl: 'https://images.unsplash.com/photo-1488015795646-7e22a773d72a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1400&q=80',
         authorId: 3,
         title: 'My cat got very sleepy and took a nap on the sofa',
         body: 'Ultrices dui sapien eget mi proin sed libero enim sed. Leo vel orci porta non. Risus nullam eget felis eget nunc lobortis. Nunc sed augue lacus viverra vitae congue. Non tellus orci ac auctor augue mauris augue neque gravida. Erat pellentesque adipiscing commodo elit at imperdiet. Diam maecenas sed enim ut sem viverra aliquet eget sit. Aenean vel elit scelerisque mauris pellentesque pulvinar pellentesque habitant morbi. Nisl pretium fusce id velit ut tortor pretium. Quisque id diam vel quam elementum. Odio ut sem nulla pharetra diam sit amet. Sagittis aliquam malesuada bibendum arcu vitae elementum curabitur vitae.',

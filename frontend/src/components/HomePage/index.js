@@ -4,15 +4,28 @@ import { useDispatch, useSelector } from 'react-redux';
 // import { useLocation, Redirect } from 'react-router-dom';
 
 import { getStories } from '../../store/stories';
+import { getUsers } from '../../store/users';
+import { restoreUser } from '../../store/session';
 import './HomePage.css';
 
 const HomePage = () => {
   const dispatch = useDispatch();
   const stories = useSelector((state) => state.stories);
   const storiesArr = Object.values(stories);
+    const randomStoriesArr = storiesArr.sort(() => 0.5 - Math.random());
+    let fourRandomStories = randomStoriesArr.slice(0, 4);
+
+  const users = useSelector((state) => state.users);
+  const usersArr = Object.values(users);
+
+  const session = useSelector((state) => state.session);
+  const sessionArr = Object.values(session);
+
 
   useEffect(() => {
     dispatch(getStories());
+    dispatch(getUsers());
+    dispatch(restoreUser());
   }, [dispatch]);
 
   return (
@@ -29,15 +42,19 @@ const HomePage = () => {
         <table className="homeStoriesTable">
           <thead className="homeStoriesThead">
             <tr>
-              <th>Title</th>
-              <th>Author</th>
-              <th>Body</th>
+              <th>See what others are sharing</th>
             </tr>
           </thead>
           <tbody className="homeStoriesTbody">
-            {storiesArr.map((story) => <tr><td><img src={`${story.imageUrl}`} alt="petImage" /></td><td>{story.title}</td><td>{story.body}</td><td>{story.authorId}</td></tr>)}
-            <img src="https://images.unsplash.com/photo-1488015795646-7e22a773d72a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1400&q=80" alt="petImage" />
-
+            {fourRandomStories.map((story) =>
+            <tr>
+              <td>
+                <img className="storyImages" src={`${story.imageUrl}`} alt="petImage" />
+              </td>
+              <td>{story.title}</td>
+              <td>{usersArr.find(user => user.id === story.authorId)?.username}</td>
+              <td>{story.body}</td>
+            </tr>)}
           </tbody>
         </table>
       </div>
