@@ -69,8 +69,8 @@ function StoryFormPage({ user }) {
               // type="text"
               // value={password}
               // onChange={(e) => setPassword(e.target.value)}
-              rows="5"
-              cols="33"
+              rows="7"
+              cols="28"
               required
             />
           </label>
