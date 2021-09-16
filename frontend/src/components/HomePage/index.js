@@ -1,10 +1,33 @@
-import React, { useState } from 'react';
-import * as sessionActions from '../../store/session';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+// import * as sessionActions from '../../store/session';
+// import { useLocation, Redirect } from 'react-router-dom';
+
+import { getStories } from '../../store/stories';
+import { getUsers } from '../../store/users';
+import { restoreUser } from '../../store/session';
 import './HomePage.css';
 
-function HomePage() {
+const HomePage = () => {
+  const dispatch = useDispatch();
+  const stories = useSelector((state) => state.stories);
+  const storiesArr = Object.values(stories);
+    const randomStoriesArr = storiesArr.sort(() => 0.5 - Math.random());
+    let fourRandomStories = randomStoriesArr.slice(0, 4);
+
+  const users = useSelector((state) => state.users);
+  const usersArr = Object.values(users);
+
+  const session = useSelector((state) => state.session);
+  const sessionArr = Object.values(session);
+
+
+  useEffect(() => {
+    dispatch(getStories());
+    dispatch(getUsers());
+    dispatch(restoreUser());
+  }, [dispatch]);
+
   return (
     <>
       <div className="container" style={{backgroundImage: 'url(/images/heroimage.png)', backgroundRepeat: 'no-repeat', backgroundSize: '100%'}}>
@@ -15,16 +38,28 @@ function HomePage() {
             </div>
         </div>
       </div>
-      <div className='homeStoriesContainer'>
-        
+      <div className="homeStoriesContainer">
+        <h2 className="homeStoriesTitle">~ See what others are sharing ~</h2>
+        <table className="homeStoriesTable">
+          <tbody className="homeStoriesTbody">
+            {fourRandomStories.map((story) =>
+            <table className="homeStoryTable">
+              <tr className="homeStoryTr">
+                <td className="homeStoryImg"><img className="storyImages" src={`${story.imageUrl}`} alt="petImage" /></td>
+                <td className="homeStoryTd">
+                    <table>
+                    <tr><td className="homeStoryTitle">{story.title}</td></tr>
+                    <tr><td className="homeStoryAuthor">{`by ${usersArr.find(user => user.id === story.authorId)?.username}`}</td></tr>
+                    <tr><td className="homeStoryBody">{story.body}</td></tr>
+                    </table>
+                </td>
+              </tr>
+            </table>)}
+          </tbody>
+        </table>
       </div>
     </>
   )
 }
-
-
-
-
-
 
 export default HomePage;
