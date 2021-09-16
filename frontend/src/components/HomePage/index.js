@@ -39,22 +39,22 @@ const HomePage = () => {
         </div>
       </div>
       <div className="homeStoriesContainer">
+        <h2 className="homeStoriesTitle">~ See what others are sharing ~</h2>
         <table className="homeStoriesTable">
-          <thead className="homeStoriesThead">
-            <tr>
-              <th>See what others are sharing</th>
-            </tr>
-          </thead>
           <tbody className="homeStoriesTbody">
             {fourRandomStories.map((story) =>
-            <tr>
-              <td>
-                <img className="storyImages" src={`${story.imageUrl}`} alt="petImage" />
-              </td>
-              <td>{story.title}</td>
-              <td>{usersArr.find(user => user.id === story.authorId)?.username}</td>
-              <td>{story.body}</td>
-            </tr>)}
+            <table className="homeStoryTable">
+              <tr className="homeStoryTr">
+                <td className="homeStoryImg"><img className="storyImages" src={`${story.imageUrl}`} alt="petImage" /></td>
+                <td className="homeStoryTd">
+                    <table>
+                    <tr><td className="homeStoryTitle">{story.title}</td></tr>
+                    <tr><td className="homeStoryAuthor">{`by ${usersArr.find(user => user.id === story.authorId)?.username}`}</td></tr>
+                    <tr><td className="homeStoryBody">{story.body}</td></tr>
+                    </table>
+                </td>
+              </tr>
+            </table>)}
           </tbody>
         </table>
       </div>

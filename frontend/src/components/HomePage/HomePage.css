@@ -62,10 +62,39 @@
 .storyImages {
   width: 500px;
   height: 100%;
+	box-shadow: inset 0 0 60px rgba(0, 0, 0, 1);
 }
-
 
 
 .homeStoriesContainer {
   text-align: center;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.homeStoriesTable {
+  text-align: center;
+  width: 80%;
+
+}
+
+.homeStoriesTitle {
+  font-family: 'Playfair Display', serif;
+  font-weight: 550;
+  font-size: 47px;
+  color: #2B5292;
+  margin: 130px 0;
+}
+
+.homeStoryTitle {
+  text-align: left;
+}
+
+.homeStoryAuthor {
+  text-align: left;
+}
+
+.homeStoryBody {
+  text-align: left;
 }
