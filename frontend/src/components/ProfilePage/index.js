@@ -39,7 +39,10 @@ const ProfilePage = () => {
       <div className="profileBanner" style={{backgroundImage: 'url(/images/profilebanner.jpg)', backgroundRepeat: 'no-repeat', backgroundSize: '100%'}}>
         <div className="bannerDarkOverlay">
             <div id={`welcome`}>
-              {`welcome`}
+              {(currentUser === author) && `Welcome`}
+            </div>
+            <div id={`profileBannerUser`}>
+              {(currentUser === author) && currentUser}
             </div>
         </div>
       </div>
@@ -50,11 +53,11 @@ const ProfilePage = () => {
             {myStories.map((story) =>
             <table className="profileStoryTable">
               <tr className="profileStoryTr">
-                <td className="profileStoryImg"><img className="storyImages" src={`${story.imageUrl}`} alt="petImage" /></td>
+                <td className="profileStoryImg"><a className="storyImages" href={`/users/${story.authorId}`}><img className="storyImages" src={`${story.imageUrl}`} alt="petImage" /></a></td>
                 <td className="profileStoryTd">
                     <table>
-                    <tr><td className="profileStoryTitle">{story.title}</td></tr>
-                    <tr><td className="profileStoryAuthor">{`by ${author}`}</td></tr>
+                    <tr><a className="profileStoryTitle" href={`/users/${story.authorId}`}><td className="profileStoryTitle">{story.title}</td></a></tr>
+                    <tr><a className="profileStoryAuthor" href={`/users/${story.authorId}`}><td className="profileStoryAuthor">{`by ${author}`}</td></a></tr>
                     <tr><td className="profileStoryBody">{story.body}</td></tr>
                     </table>
                 </td>
