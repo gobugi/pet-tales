@@ -95,6 +95,10 @@ li > a:visited {
   color:  #2B5292;
 }
 
+li > a:hover {
+  color: #926B2B;
+}
+
 .logoutButton {
   height:32px;
   width:128px;

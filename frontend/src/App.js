@@ -24,6 +24,9 @@ function App() {
           <Route exact path='/'>
             <HomePage />
           </Route>
+          <Route path="/users/:id">
+            <ProfilePage />
+          </Route>
           <Route path="/login">
             <LoginFormPage />
           </Route>
@@ -32,9 +35,6 @@ function App() {
           </Route>
           <Route path="/stories/new">
             <StoryFormPage />
-          </Route>
-          <Route path="/users/:id">
-            <ProfilePage />
           </Route>
         </Switch>
       )}
