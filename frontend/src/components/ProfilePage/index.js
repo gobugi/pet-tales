@@ -22,7 +22,9 @@ const ProfilePage = () => {
   const sessionArr = Object.values(session);
 
   const location = useLocation();
-  const userId = location.pathname.split('/').pop(-1);
+  const userId = location?.pathname.split('/').pop(-1);
+  const author = usersArr[+userId - 1]?.username;
+  const currentUser = sessionArr[0]?.username;
 
   const myStories = storiesArr.filter((story) => story.authorId === +userId)
 
@@ -42,7 +44,7 @@ const ProfilePage = () => {
         </div>
       </div>
       <div className="profileStoriesContainer">
-        <h2 className="profileStoriesTitle">~ My stories ~</h2>
+        <h2 className="profileStoriesTitle">~ {currentUser === author ? 'My' : `${author}'s` } stories ~</h2>
         <table className="profileStoriesTable">
           <tbody className="profileStoriesTbody">
             {myStories.map((story) =>
@@ -52,7 +54,7 @@ const ProfilePage = () => {
                 <td className="profileStoryTd">
                     <table>
                     <tr><td className="profileStoryTitle">{story.title}</td></tr>
-                    <tr><td className="profileStoryAuthor">{`by ${usersArr[+userId - 1]?.username}`}</td></tr>
+                    <tr><td className="profileStoryAuthor">{`by ${author}`}</td></tr>
                     <tr><td className="profileStoryBody">{story.body}</td></tr>
                     </table>
                 </td>
