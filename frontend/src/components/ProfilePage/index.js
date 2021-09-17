@@ -48,9 +48,11 @@ const ProfilePage = () => {
       </div>
       <div className="profileStoriesContainer">
         <h2 className="profileStoriesTitle">~ {currentUser === author ? 'My' : `${author}'s` } stories ~</h2>
+        {(currentUser === author) &&
         <a href='/stories/new'>
           <i class="fas fa-plus-circle fa-3x"></i>
         </a>
+        }
         <table className="profileStoriesTable">
           <tbody className="profileStoriesTbody">
             {myStories.map((story) =>
