@@ -9,7 +9,10 @@
   right: 0px;
   height: 100%;
   z-index: 900;
-  background-color: #2B5292;
+  background: linear-gradient(to bottom, transparent, #2B5292),
+  url("https://images.unsplash.com/photo-1513360371669-4adf3dd7dff8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1700&q=80");
+  background-repeat: no-repeat;
+  background-size: 100%;
   color: #EFEFEF;
   font-family: 'Playfair Display', serif;
   font-weight: 550;
@@ -20,7 +23,7 @@ form {
   text-align:right;
   width: 400px;
   margin-left: 40%;
-  margin-top: 60px;
+  margin-top: 110px;
 }
 
 label {

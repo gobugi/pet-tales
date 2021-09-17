@@ -8,11 +8,11 @@ const router = express.Router();
 
 
 // Get Story
-// router.get('/:id', asyncHandler(async (req, res) => {
-//   const id = req.params.id;
-//   const story = await Story.findByPk(id);
-//   return res.json(story)
-// }));
+router.get('/:id', asyncHandler(async (req, res) => {
+  const id = req.params.id;
+  const story = await Story.findByPk(id);
+  return res.json(story)
+}));
 
 router.get('/', asyncHandler(async (req, res) => {
   const stories = await Story.findAll();
