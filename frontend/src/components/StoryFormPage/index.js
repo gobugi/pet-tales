@@ -60,11 +60,11 @@ const StoryFormPage = () => {
         </div>
         <div>
           <label>
-            Comment
+          New story
             <textarea
               value={body}
               onChange={updateBody}
-              placeholder="Type your comment here."
+              placeholder="Type your story here."
               rows="7"
               cols="28"
               required
