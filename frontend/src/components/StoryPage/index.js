@@ -4,10 +4,10 @@ import * as sessionActions from '../../store/session';
 import { NavLink, Route, useParams } from 'react-router-dom';
 import EditStoryForm from "../EditStoryForm";
 // import { fetchStory } from '../../store/stories'
-import './ProfilePage.css';
+import './StoryPage.css';
 
 
-import { getStories } from '../../store/stories';
+import { getStory } from '../../store/stories';
 import { getComments } from '../../store/comments';
 import StoryFormPage from '../StoryFormPage';
 import { getUsers } from '../../store/users';
@@ -39,7 +39,7 @@ const StoryPage = () => {
   // const myStories = storiesArr.filter((story) => story.authorId === +userId)
 
   useEffect(() => {
-    dispatch(getStories(storyId));
+    dispatch(getStory(storyId));
     dispatch(getUsers());
     dispatch(restoreUser());
   }, [dispatch, storyId]);
@@ -54,16 +54,16 @@ const StoryPage = () => {
     <div className='storyDiv'>
       <div className="storyBanner" style={{backgroundImage: 'url(/images/storybanner.jpg)', backgroundRepeat: 'no-repeat', backgroundSize: '100%'}}>
         <div className="storyDarkOverlay">
-            <div id={`storyWelcome`}>
+            {/* <div id={`storyWelcome`}>
               {(currentUser === author) && `Welcome`}
             </div>
             <div id={`storyUser`}>
               {(currentUser === author) && currentUser}
-            </div>
+            </div> */}
         </div>
       </div>
       <div className="storyContainer">
-        <h2 className="storyTitle">~ {currentUser === author ? 'My' : `${author}'s` } story ~</h2>
+        {/* <h2 className="storyTitle">~ {currentUser === author ? 'My' : `${author}'s` } story ~</h2> */}
           <ul>
             <li>
               <b>Image</b> {stories.imageUrl}
@@ -80,7 +80,7 @@ const StoryPage = () => {
           </ul>
         <table className="storyTable">
           <tbody className="storyTbody">
-            {myStories.map((story) =>
+            {/* {myStories.map((story) =>
             <table className="storyTable">
               <tr className="storyTr">
                 <td className="storyImg"><a className="storyImages" href={`/users/${story.authorId}`}><img className="storyImages" src={`${story.imageUrl}`} alt="petImage" /></a></td>
@@ -92,7 +92,7 @@ const StoryPage = () => {
                     </table>
                 </td>
               </tr>
-            </table>
+            </table> */}
             )}
           </tbody>
         </table>

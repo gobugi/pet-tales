@@ -14,6 +14,41 @@ export const getStories = () => async (dispatch) => {
   dispatch(setStories(stories));
 };
 
+export const getStory = (id) => async dispatch => {
+  const response = await fetch(`/api/stories/${id}`);
+
+  if (response.ok) {
+    const stories = await response.json();
+    dispatch(setStories(stories));
+  }
+}
+
+
+export const postStory = (stories) => async dispatch => {
+  const response = await fetch('/api/stories', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(stories)
+  })
+  if (response.ok) {
+    const newStory = await response.json();
+    dispatch(setStories(newStory));
+  }
+};
+
+export const editStory = (stories, id) => async dispatch => {
+  const response = await fetch(`/api/stories/${id}`, {
+    method: 'PUT',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({...stories, id})
+  });
+
+  if (response.ok) {
+    const updatedStory = await response.json();
+    dispatch(setStories(updatedStory));
+  }
+}
+
 // Define an initial state
 const initialState = {};
 

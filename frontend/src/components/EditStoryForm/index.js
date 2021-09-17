@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { editStory } from '../store/stories';
+import { editStory } from '../../store/stories';
 
 const EditStoryForm = ({ story, hideForm }) => {
   const dispatch = useDispatch();
