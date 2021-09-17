@@ -1,15 +1,13 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector  } from 'react-redux';
-import { postStory } from '../store/stories';
-import { useHistory } from 'react-router-dom';
-import './StoryFormPage.css';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { editStory } from '../store/stories';
 
-const StoryFormPage = ({ hideForm }) => {
+const EditStoryForm = ({ story, hideForm }) => {
   const dispatch = useDispatch();
-  const history = useHistory();
-  const [title, setTitle] = useState('');
-  const [imageUrl, setImageUrl] = useState('');
-  const [body, setBody] = useState('');
+
+  const [title, setTitle] = useState(story.title);
+  const [imageUrl, setImageUrl] = useState(story.imageUrl);
+  const [body, setBody] = useState(story.body);
 
   const updateTitle = (e) => setTitle(e.target.value);
   const updateImageUrl = (e) => setImageUrl(e.target.value);
@@ -18,19 +16,19 @@ const StoryFormPage = ({ hideForm }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    let createdStory;
-    createdStory = {
+    let updatedStory;
+
+    updatedStory = {
       title,
       imageUrl,
       body,
     }
-    if (createdStory) {
-      dispatch(postStory(createdStory))
-      history.push(`/stories/${createdStory.id}`);
+
+    if (updatedStory) {
+      dispatch(editStory(updatedStory, story.id));
       hideForm();
     }
   };
-
 
   return (
     <div className='formContainer'>
@@ -72,10 +70,10 @@ const StoryFormPage = ({ hideForm }) => {
             />
           </label>
         </div>
-        <button type="submit">Submit</button>
+        <button type="submit">Update</button>
       </form>
     </div>
   );
 }
 
-export default StoryFormPage;
+export default EditStoryForm;
