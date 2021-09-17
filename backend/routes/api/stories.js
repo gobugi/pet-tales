@@ -14,6 +14,7 @@ router.get('/:id', asyncHandler(async (req, res) => {
   return res.json(story)
 }));
 
+
 router.get('/', asyncHandler(async (req, res) => {
   const stories = await Story.findAll();
   res.json(stories);

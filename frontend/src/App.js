@@ -8,6 +8,8 @@ import Navigation from "./components/Navigation";
 import HomePage from './components/HomePage';
 import StoryFormPage from './components/StoryFormPage';
 import ProfilePage from './components/ProfilePage';
+import StoryPage from './components/StoryPage';
+import EditStoryForm from './components/EditStoryForm';
 
 function App() {
   const dispatch = useDispatch();
@@ -27,14 +29,20 @@ function App() {
           <Route path="/users/:id">
             <ProfilePage />
           </Route>
+          <Route exact path="/stories/:id/edit">
+            <EditStoryForm />
+          </Route>
+          <Route exact path="/stories/new">
+            <StoryFormPage />
+          </Route>
+          <Route path="/stories/:id">
+            <StoryPage />
+          </Route>
           <Route path="/login">
             <LoginFormPage />
           </Route>
           <Route path="/signup">
             <SignupFormPage />
-          </Route>
-          <Route path="/stories/new">
-            <StoryFormPage />
           </Route>
         </Switch>
       )}
