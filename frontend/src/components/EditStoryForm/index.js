@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { editStory } from '../../store/stories';
 
-const EditStoryForm = ({ story, hideForm }) => {
+const EditStoryForm = ({ story }) => {
   const dispatch = useDispatch();
 
   const [title, setTitle] = useState(story.title);
@@ -26,7 +26,6 @@ const EditStoryForm = ({ story, hideForm }) => {
 
     if (updatedStory) {
       dispatch(editStory(updatedStory, story.id));
-      hideForm();
     }
   };
 

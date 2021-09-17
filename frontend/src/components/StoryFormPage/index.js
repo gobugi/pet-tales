@@ -4,7 +4,7 @@ import { postStory } from '../../store/stories';
 import { useHistory } from 'react-router-dom';
 import './StoryFormPage.css';
 
-const StoryFormPage = ({ hideForm }) => {
+const StoryFormPage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const [title, setTitle] = useState('');
@@ -27,7 +27,6 @@ const StoryFormPage = ({ hideForm }) => {
     if (createdStory) {
       dispatch(postStory(createdStory))
       history.push(`/stories/${createdStory.id}`);
-      hideForm();
     }
   };
 
