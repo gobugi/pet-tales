@@ -45,21 +45,25 @@
   color: #EFEFEF;
   font-size: 100px;
   float: right;
-  margin-right: 100px;
+  margin-right: 200px;
   padding: 0px;
-  margin-top: 180px;
+  margin-top: 215px;
 }
 
-/* #line2 {
+#profileBannerUser {
   font-family: 'Roboto Slab', serif;
   font-weight: 100;
   color: #EFEFEF;
   font-size: 60px;
-  text-align: left;
+  float: right;
+  margin-right: -133px;
   padding: 0px;
   font-style: italic;
-  margin-left: 125px;
-} */
+  padding: 0px;
+  margin-top: 350px;
+
+}
+
 
 .profileStoriesContainer {
   margin-left: 0;
