@@ -99,7 +99,7 @@
   font-style: italic;
   color: #2B5292;
   margin-top: 0px;
-  margin-bottom: 150px;
+  margin-bottom: 50px;
 }
 
 .profileStoryTitle {
@@ -129,4 +129,12 @@
 
 .profileStoryTable {
   margin: 5px 0;
+}
+
+
+.fas.fa-plus-circle.fa-3x {
+  color: #2B5292;
+  margin-top: 40px;
+  margin-bottom: 50px;
+  cursor: pointer;
 }
