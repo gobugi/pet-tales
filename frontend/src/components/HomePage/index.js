@@ -45,11 +45,11 @@ const HomePage = () => {
             {fourRandomStories.map((story) =>
             <table className="homeStoryTable">
               <tr className="homeStoryTr">
-                <td className="homeStoryImg"><img className="storyImages" src={`${story.imageUrl}`} alt="petImage" /></td>
+                <td className="homeStoryImg"><a className="storyImages" href={`/users/${story.authorId}`}><img className="storyImages" src={`${story.imageUrl}`} alt="petImage" /></a></td>
                 <td className="homeStoryTd">
                     <table>
-                    <tr><a href={`/users/${story.authorId}`}><td className="homeStoryTitle">{story.title}</td></a></tr>
-                    <tr><td className="homeStoryAuthor">{`by ${usersArr.find(user => user.id === story.authorId)?.username}`}</td></tr>
+                    <tr><a className="homeStoryTitle" href={`/users/${story.authorId}`}><td className="homeStoryTitle">{story.title}</td></a></tr>
+                    <tr><a className="homeStoryAuthor" href={`/users/${story.authorId}`}><td className="homeStoryAuthor">{`by ${usersArr.find(user => user.id === story.authorId)?.username}`}</td></a></tr>
                     <tr><td className="homeStoryBody">{story.body}</td></tr>
                     </table>
                 </td>
