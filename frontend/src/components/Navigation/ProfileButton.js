@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
+import { Redirect } from 'react-router-dom';
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -28,6 +29,16 @@ function ProfileButton({ user }) {
     dispatch(sessionActions.logout());
   };
 
+  const redirectHome = (e) => {
+    window.location.href = "/";
+  }
+
+  const logoutAndRedirect = (e) => {
+    logout(e);
+    redirectHome(e);
+  }
+
+
   return (
     <>
       <i onClick={openMenu} className="fas fa-user-circle fa-3x"></i>
@@ -37,7 +48,7 @@ function ProfileButton({ user }) {
             <li><a href={`/users/${user.id}`} style={{textDecoration: 'none'}}>{user.username}</a></li>
             <li>{user.email}</li>
             <li>
-              <button className="logoutButton" onClick={logout}>
+              <button className="logoutButton" onClick={logoutAndRedirect}>
                 <i className="fas fa-sign-out-alt"></i> Log Out
               </button>
             </li>

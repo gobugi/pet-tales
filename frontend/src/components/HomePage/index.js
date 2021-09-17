@@ -48,7 +48,7 @@ const HomePage = () => {
                 <td className="homeStoryImg"><img className="storyImages" src={`${story.imageUrl}`} alt="petImage" /></td>
                 <td className="homeStoryTd">
                     <table>
-                    <tr><td className="homeStoryTitle">{story.title}</td></tr>
+                    <tr><a href={`/users/${story.authorId}`}><td className="homeStoryTitle">{story.title}</td></a></tr>
                     <tr><td className="homeStoryAuthor">{`by ${usersArr.find(user => user.id === story.authorId)?.username}`}</td></tr>
                     <tr><td className="homeStoryBody">{story.body}</td></tr>
                     </table>
