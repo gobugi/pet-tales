@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector  } from 'react-redux';
 import { postStory } from '../../store/stories';
 import { useHistory } from 'react-router-dom';
@@ -7,13 +7,19 @@ import './StoryFormPage.css';
 const StoryFormPage = () => {
   const dispatch = useDispatch();
   const history = useHistory();
+
+
   const [title, setTitle] = useState('');
   const [imageUrl, setImageUrl] = useState('');
   const [body, setBody] = useState('');
 
+
   const updateTitle = (e) => setTitle(e.target.value);
   const updateImageUrl = (e) => setImageUrl(e.target.value);
   const updateBody = (e) => setBody(e.target.value);
+
+
+  const sessionUser = useSelector(state => state.session.user);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,10 +29,12 @@ const StoryFormPage = () => {
       title,
       imageUrl,
       body,
+      authorId: sessionUser.id,
     }
+
     if (createdStory) {
       dispatch(postStory(createdStory))
-      history.push(`/stories/${createdStory.id}`);
+      history.push(`/stories/${sessionUser.id}`);
     }
   };
 
