@@ -10,7 +10,7 @@ import './StoryPage.css';
 
 import { getComments } from '../../store/comments';
 import StoryFormPage from '../StoryFormPage';
-import { getUsers } from '../../store/users';
+// import { getUsers } from '../../store/users';
 import { restoreUser } from '../../store/session';
 
 const StoryPage = () => {

@@ -6,7 +6,7 @@ import './ProfilePage.css';
 
 
 import { getStories } from '../../store/stories';
-import { getUsers } from '../../store/users';
+// import { getUsers } from '../../store/users';
 import { restoreUser } from '../../store/session';
 
 const ProfilePage = () => {
@@ -30,7 +30,7 @@ const ProfilePage = () => {
 
   useEffect(() => {
     dispatch(getStories());
-    dispatch(getUsers());
+    // dispatch(getUsers());
     dispatch(restoreUser());
   }, [dispatch]);
 

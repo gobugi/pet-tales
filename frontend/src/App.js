@@ -10,6 +10,7 @@ import StoryFormPage from './components/StoryFormPage';
 import ProfilePage from './components/ProfilePage';
 import StoryPage from './components/StoryPage';
 import EditStoryForm from './components/EditStoryForm';
+import EditCommentForm from './components/EditCommentForm';
 
 function App() {
   const dispatch = useDispatch();
@@ -31,6 +32,9 @@ function App() {
           </Route>
           <Route exact path="/stories/:id/edit">
             <EditStoryForm />
+          </Route>
+          <Route exact path="/comments/:id/edit">
+            <EditCommentForm />
           </Route>
           <Route exact path="/stories/new">
             <StoryFormPage />

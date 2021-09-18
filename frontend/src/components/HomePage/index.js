@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 // import { useLocation, Redirect } from 'react-router-dom';
 
 import { getStories } from '../../store/stories';
-import { getUsers } from '../../store/users';
+// import { getUsers } from '../../store/users';
 import { restoreUser } from '../../store/session';
 import './HomePage.css';
 
@@ -24,7 +24,7 @@ const HomePage = () => {
 
   useEffect(() => {
     dispatch(getStories());
-    dispatch(getUsers());
+    // dispatch(getUsers());
     dispatch(restoreUser());
   }, [dispatch]);
 
