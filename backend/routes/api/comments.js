@@ -5,39 +5,45 @@ const { Comment } = require('../../db/models');
 
 const router = express.Router();
 
-// Get Comment
-router.get('/', asyncHandler(async (req, res) => {
-  const comments = await Comment.findAll();
-  res.json(comments);
+// Get a Comment
+router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
+  const id = req.params.id;
+  const comment = await Comment.findByPk(id);
+  res.json(comment);
 }));
+
 
 
 // Create Comment
 router.post('/', asyncHandler(async (req, res) => {
-    const { userId, storyId, body } = req.body;
-    const comment = await Comment.create({ userId, storyId, body });
-    return res.json({ comment });
+  const newComment = await Comment.create(req.body);
+  return res.json(newComment)
   }),
 );
 
+
+
 // Edit Comment
-router.put('/:id', asyncHandler(async (req, res) => {
+router.put('/:id(\\d+)', asyncHandler(async (req, res) => {
   const id = req.params.id;
   const { userId, storyId, body } = req.body;
-  await Comment.update({ userId, storyId, body })
-  const comment = await Comment.findByPk(id);
-  return res.json(comment)
+
+  const commentEdit = await Comment.findByPk(id);
+  await commentEdit.update({ userId, storyId, body })
+  return res.json(commentEdit);
 }));
+
+
 
 //Delete Comment
 router.delete('/:id', asyncHandler(async (req, res) => {
   const commentId = req.params.id;
   const comment = await Comment.findByPk(commentId);
-  if (!comment) return res.status(404).json({});
 
-  await Comment.destroy({ where: { id: comment.id } });
-  const destroyed = comment.id;
-  return res.json({ destroyed })
+  await comment.destroy();
+  return res.json({})
 }))
+
+
 
 module.exports = router;
