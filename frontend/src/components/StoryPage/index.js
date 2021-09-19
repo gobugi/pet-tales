@@ -54,15 +54,6 @@ const StoryPage = () => {
     dispatch(deleteStory());
   }, [dispatch]);
 
-  // const deleteCurrentStory = (id) => {
-  //   dispatch(deleteStory(id));
-  //   history.push(`/users/${sessionUser?.id}`);
-  // };
-
-  // async function deleteCurrentStory(id) {
-  //   await dispatch(deleteStory(id))
-  //   history.push(`/users/${sessionUser?.id}`)
-  // }
 
   const handleDelete = (id) => {
     dispatch(deleteStory(id));

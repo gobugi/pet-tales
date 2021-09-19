@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useLocation, NavLink } from 'react-router-dom';
-import { getStories, getStory, editStory, deleteStory } from '../../store/stories';
+import { getStories, getStory, editStory } from '../../store/stories';
 import { restoreUser } from '../../store/session';
 import './EditStoryForm.css';
 
@@ -38,16 +38,15 @@ const EditStoryForm = () => {
   const updateImageUrl = (e) => setImageUrl(e.target.value);
   const updateBody = (e) => setBody(e.target.value);
 
-  // useEffect(() => {
-  //   dispatch(getStories());
-  //   dispatch(getStory());
-  //   dispatch(editStory());
-
-  //   dispatch(restoreUser());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(getStories());
+    dispatch(getStory());
+    dispatch(editStory());
+    dispatch(restoreUser());
+  }, [dispatch]);
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    // e.preventDefault();
 
     let editedStory;
     editedStory = {
@@ -59,14 +58,10 @@ const EditStoryForm = () => {
     }
 
     if (editedStory) {
-      dispatch(editStory(editedStory))
+      dispatch(editStory(editedStory, +storyId))
       history.push(`/users/${sessionUser?.id}`);
     }
   };
-
-  const handleDelete = (currentStory) => {
-    dispatch(deleteStory(currentStory));
-}
 
 
   return (
