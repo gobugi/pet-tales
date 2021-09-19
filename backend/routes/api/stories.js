@@ -43,15 +43,17 @@ router.post('/', asyncHandler(async (req, res) => {
 );
 
 // Edit a Story
-router.put('/:id(\\d+)', asyncHandler(async (req, res) => {
-  const { imageUrl, title, body } = req.body;
-  const id = req.params.id;
+router.put('/:id', asyncHandler(async (req, res) => {
+  const storyId = req.params.id;
+  const { imageUrl, title, body, authorId } = req.body;
 
-  const storyEdit = await Story.findByPk(id);
-  await storyEdit.update({ imageUrl, title, body })
+  const storyEdit = await Story.findByPk(storyId);
+  await storyEdit.update({ imageUrl, title, body, authorId })
   return res.json(storyEdit);
   }),
 );
+
+
 
 //Delete a Story
 router.delete('/:id', asyncHandler(async (req, res) => {

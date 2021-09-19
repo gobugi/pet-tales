@@ -1,33 +1,72 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { editStory } from '../../store/stories';
+import { useHistory, useLocation } from 'react-router-dom';
+import { getStories, getStory, editStory, deleteStory } from '../../store/stories';
+import './EditStoryForm.css';
 
-const EditStoryForm = ({ story }) => {
+const EditStoryForm = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
+  const location = useLocation();
 
-  const [title, setTitle] = useState(story.title);
-  const [imageUrl, setImageUrl] = useState(story.imageUrl);
-  const [body, setBody] = useState(story.body);
+
+  const sessionUser = useSelector(state => state.session.user);
+  if(!sessionUser) history.push('/');
+
+  const [title, setTitle] = useState('');
+  const [imageUrl, setImageUrl] = useState('');
+  const [body, setBody] = useState('');
+
+
+  const pathUrl = location?.pathname.split('/');
+  const storyId = pathUrl[pathUrl.length - 2];
+
+  const stories = useSelector((state) => state.stories);
+  const storiesArr = Object.values(stories);
+
+  const currentStory = storiesArr.find(story => {
+    return story.id === +storyId
+  })
+
+  const currentTitle = currentStory?.title;
+  const currentImageUrl = currentStory?.imageUrl;
+  const currentBody = currentStory?.body;
+
+  console.log(currentBody)
+
+  // const storiesArr = Object.values(stories);
+  // const currentStory = storiesArr[+storyId - 1];
+
+  useEffect(() => {
+    dispatch(getStories());
+    dispatch(getStory());
+    // dispatch(restoreUser());
+  }, [dispatch]);
+
 
   const updateTitle = (e) => setTitle(e.target.value);
   const updateImageUrl = (e) => setImageUrl(e.target.value);
   const updateBody = (e) => setBody(e.target.value);
 
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    let updatedStory;
-
-    updatedStory = {
-      title,
-      imageUrl,
-      body,
+    let editedStory;
+    editedStory = {
+      title: currentTitle,
+      imageUrl: currentImageUrl,
+      body: currentBody,
+      authorId: sessionUser.id,
     }
 
-    if (updatedStory) {
-      dispatch(editStory(updatedStory, story.id));
+    if (editedStory) {
+      dispatch(editStory(editedStory))
+      history.push(`/users/${sessionUser.id}`);
     }
   };
+
 
   return (
     <div className='formContainer'>
@@ -37,7 +76,7 @@ const EditStoryForm = ({ story }) => {
             Title
             <input
               type="text"
-              value={title}
+              defaultValue={currentTitle}
               onChange={updateTitle}
               required
               // placeholder="Title"
@@ -49,7 +88,7 @@ const EditStoryForm = ({ story }) => {
             Image URL
             <input
               type="text"
-              value={imageUrl}
+              defaultValue={currentImageUrl}
               onChange={updateImageUrl}
               required
               // placeholder="Image URL"
@@ -58,18 +97,19 @@ const EditStoryForm = ({ story }) => {
         </div>
         <div>
           <label>
-            New story
+          New story
             <textarea
-              value={body}
+              defaultValue={currentBody}
               onChange={updateBody}
               // placeholder="Type your story here."
               rows="7"
               cols="28"
               required
-            />
+            >
+            </textarea>
           </label>
         </div>
-        <button type="submit">Update</button>
+        <button type="submit">Submit</button>
       </form>
     </div>
   );

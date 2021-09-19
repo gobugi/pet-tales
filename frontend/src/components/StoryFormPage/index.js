@@ -34,7 +34,7 @@ const StoryFormPage = () => {
 
     if (createdStory) {
       dispatch(postStory(createdStory))
-      history.push(`/stories/${sessionUser.id}`);
+      history.push(`/users/${sessionUser.id}`);
     }
   };
 

@@ -49,7 +49,7 @@ export const getStories = () => async (dispatch) => {
 };
 
 export const editStory = (story, id) => async dispatch => {
-  const response = await csrfFetch(`/api/stories/${id}`, {
+  const response = await csrfFetch(`/api/stories/${story.id}`, {
     method: 'PUT',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({...story, id})

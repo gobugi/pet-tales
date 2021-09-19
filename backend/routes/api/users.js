@@ -52,6 +52,13 @@ router.get('/:id(\\d+)', asyncHandler(async(req, res) => {
   res.json(user)
 }));
 
+// Get Users
+
+router.get('/', asyncHandler(async (req, res) => {
+  const users = await User.findAll();
+  res.json(users);
+}));
+
 
 // Get Stories for a User
 router.get('/:id(\\d+)/stories/', asyncHandler(async (req, res) => {
