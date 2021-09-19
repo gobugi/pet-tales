@@ -103,8 +103,8 @@ export const postStory = (story) => async dispatch => {
   }
 };
 
-export const deleteStory = (story, id) => async dispatch => {
-  const response = await csrfFetch(`/api/stories/${id}`, {
+export const deleteStory = (story) => async dispatch => {
+  const response = await csrfFetch(`/api/stories/${storyId}`, {
     method: 'DELETE',
     body: JSON.stringify(story)
   })

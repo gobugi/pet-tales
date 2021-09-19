@@ -10,11 +10,6 @@ const EditStoryForm = () => {
   const location = useLocation();
 
 
-  // const [title, setTitle] = useState('');
-  // const [imageUrl, setImageUrl] = useState('');
-  // const [body, setBody] = useState('');
-
-
   const sessionUser = useSelector(state => state.session.user);
 
   const pathUrl = window.location?.pathname.split('/');
@@ -45,6 +40,7 @@ const EditStoryForm = () => {
     dispatch(getStories());
     dispatch(getStory());
     dispatch(editStory());
+    dispatch(deleteStory());
     // dispatch(restoreUser());
   }, [dispatch]);
 
@@ -64,6 +60,10 @@ const EditStoryForm = () => {
       history.push(`/users/${sessionUser.id}`);
     }
   };
+
+  const handleDelete = (currentStory) => {
+    dispatch(deleteStory(currentStory));
+}
 
 
   return (
@@ -107,15 +107,17 @@ const EditStoryForm = () => {
           </label>
         </div>
         <button type="submit">Edit</button>
-        <NavLink to='/' className='deleteButton'>
+        <NavLink to={`/users/${sessionUser.id}`} className='deleteStoryButton' onClick={() => handleDelete()}>
           <button>Delete</button>
         </NavLink>
-        <NavLink to='/' className='cancelButton'>
+        <NavLink to={`/users/${sessionUser.id}`} className='cancelButton'>
           <button>Cancel</button>
         </NavLink>
       </form>
     </div>
   );
 }
+
+
 
 export default EditStoryForm;
