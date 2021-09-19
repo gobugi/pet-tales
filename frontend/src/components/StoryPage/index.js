@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector  } from 'react-redux';
-import { NavLink, useParams, useLocation } from 'react-router-dom';
-import { getStory, getStories } from '../../store/stories'
+import { NavLink, useParams, useLocation, useHistory, Redirect } from 'react-router-dom';
+import { getStory, getStories, deleteStory } from '../../store/stories'
 import { getUsers } from '../../store/users';
 import { restoreUser } from '../../store/session';
 import { getComments } from '../../store/comments';
@@ -11,9 +11,12 @@ import './StoryPage.css';
 
 const StoryPage = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   // const { id } = useParams();
   // const story = useSelector(state => state.stories[id]);
+
+  const sessionUser = useSelector(state => state.session.user);
 
   const stories = useSelector((state) => state.stories);
   const storiesArr = Object.values(stories);
@@ -25,7 +28,7 @@ const StoryPage = () => {
   const sessionArr = Object.values(session);
 
   const location = useLocation();
-  const storyId = window.location?.pathname.split('/').pop(-1);
+  const storyId = window.location?.pathname?.split('/').pop(-1);
 
   const currentStory = storiesArr.find(story => {
     return story?.id === +storyId
@@ -41,13 +44,30 @@ const StoryPage = () => {
   // const currentUser = sessionArr[0]?.username;
   const currentUserId = sessionArr[0]?.id;
 
+  const id = +storyId
+
   useEffect(() => {
     // dispatch(getStory(id));
     dispatch(getStories());
     dispatch(getUsers());
     dispatch(restoreUser());
+    dispatch(deleteStory());
   }, [dispatch]);
 
+  // const deleteCurrentStory = (id) => {
+  //   dispatch(deleteStory(id));
+  //   history.push(`/users/${sessionUser?.id}`);
+  // };
+
+  // async function deleteCurrentStory(id) {
+  //   await dispatch(deleteStory(id))
+  //   history.push(`/users/${sessionUser?.id}`)
+  // }
+
+  const handleDelete = (id) => {
+    dispatch(deleteStory(id));
+    history.push(`/users/${sessionUser?.id}`);
+}
 
   return (
     <div className='storyDiv'>
@@ -67,11 +87,14 @@ const StoryPage = () => {
                     <tr><a className="smallStoryAuthor" href={`/users/${userId}`}><td className="smallStoryAuthor">{`by ${currentUser?.username}`}</td></a></tr>
                     <tr><td className="smallStoryBody">{`${currentStory?.body}`}</td></tr>
                   </table>
-                  {(currentUser?.id === currentUserId) &&
-                  <NavLink to={`${window.location?.pathname}/edit`}>
-                    <button className="storyPageEditButton">Edit</button>
-                  </NavLink>
-                  }
+                    {(currentUser?.id === currentUserId) &&
+                      <NavLink to={`/stories/${storyId}/edit`}>
+                        <button className="storyPageEditButton">Edit</button>
+                      </NavLink>
+                    }
+                    {(currentUser?.id === currentUserId) &&
+                      <button className='storyPageDeleteButton' onClick={() => handleDelete(currentStory?.id)}>Delete</button>
+                    }
                 </td>
               </tr>
             </table>

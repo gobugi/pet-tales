@@ -9,9 +9,7 @@ const router = express.Router();
 
 // Get Stories
 router.get('/', asyncHandler(async (req, res) => {
-  const stories = await Story.findAll({
-    include: Comment
-  });
+  const stories = await Story.findAll();
   res.json(stories);
 }));
 

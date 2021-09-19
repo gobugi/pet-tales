@@ -86,7 +86,7 @@
 
 .bigStoryTable {
   text-align: left;
-  width: 80%;
+  width: 100%;
 
 }
 
@@ -137,6 +137,24 @@
 }
 
 
+.storyPageDeleteButton {
+  font-family: 'Playfair Display', serif;
+  font-weight: 550;
+  font-size: 20px;
+  background-color: #EFEFEF;
+  color: #2B5292;
+  margin-top: 0px;
+  border-radius: 8px;
+  height: 33px;
+  width: fit-content;
+  text-align: right;
+  vertical-align: middle;
+  float: right;
+  margin-right: -120px;
+  cursor: pointer;
+  position: relative;
+}
+
 .storyPageEditButton {
   font-family: 'Playfair Display', serif;
   font-weight: 550;
@@ -147,9 +165,18 @@
   border-radius: 8px;
   height: 33px;
   width: fit-content;
-  text-align: center;
+  text-align: right;
   vertical-align: middle;
   float: right;
-  margin-right: 43px;
+  margin-right: 10px;
   cursor: pointer;
+  position: relative;
+
+}
+
+#deleteForm {
+  margin-top: 0px;
+  float: right;
+  margin-right: 150px;
+  width: 10%;
 }

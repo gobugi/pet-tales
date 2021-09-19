@@ -1,7 +1,8 @@
 import { csrfFetch } from "./csrf";
 
 const pathUrl = window.location?.pathname.split('/');
-const storyId = pathUrl[pathUrl.length - 2];
+const storyId = pathUrl[pathUrl.length - 1];
+const storyEditId = pathUrl[pathUrl.length - 2];
 
 
 // Define Action Types as Constants
@@ -54,7 +55,7 @@ export const getStories = () => async (dispatch) => {
 
 
 export const editStory = (story) => async dispatch => {
-  const res = await csrfFetch(`/api/stories/${storyId}`, {
+  const res = await csrfFetch(`/api/stories/${storyEditId}`, {
     method: 'PUT',
     headers: {'Content-Type' : 'application/json'},
     body: JSON.stringify(story)

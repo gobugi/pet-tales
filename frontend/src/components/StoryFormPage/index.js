@@ -1,10 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector  } from 'react-redux';
-import { postStory } from '../../store/stories';
+import { postStory, getStory, getStories, editStory, deleteStory } from '../../store/stories';
+import { getUsers } from '../../store/users';
+import { restoreUser } from '../../store/session';
 import { useHistory } from 'react-router-dom';
 import './StoryFormPage.css';
 
 const StoryFormPage = () => {
+
+  const sessionUser = useSelector(state => state.session.user);
+
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -12,14 +17,22 @@ const StoryFormPage = () => {
   const [title, setTitle] = useState('');
   const [imageUrl, setImageUrl] = useState('');
   const [body, setBody] = useState('');
+  const [authorId, setAuthorId] = useState(`${sessionUser?.id}`);
 
 
   const updateTitle = (e) => setTitle(e.target.value);
   const updateImageUrl = (e) => setImageUrl(e.target.value);
   const updateBody = (e) => setBody(e.target.value);
+  const updateAuthorId = (e) => setAuthorId(e.target.value);
 
-
-  const sessionUser = useSelector(state => state.session.user);
+  useEffect(() => {
+    dispatch(postStory());
+    dispatch(getStories());
+    dispatch(getUsers());
+    dispatch(editStory());
+    dispatch(deleteStory());
+    dispatch(restoreUser());
+  }, [dispatch]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -29,14 +42,16 @@ const StoryFormPage = () => {
       title,
       imageUrl,
       body,
-      authorId: sessionUser.id,
+      authorId,
     }
 
-    if (createdStory) {
+    // if (createdStory) {
       dispatch(postStory(createdStory))
-      history.push(`/users/${sessionUser.id}`);
-    }
+      history.push(`/users/${sessionUser?.id}`);
+    // }
   };
+
+  console.log(getStory[0]?.id)
 
 
   return (
@@ -76,6 +91,18 @@ const StoryFormPage = () => {
               rows="7"
               cols="28"
               required
+            />
+          </label>
+        </div>
+        <div style={{visibility: 'hidden'}}>
+          <label>
+            authorId
+            <input
+              type="text"
+              value={authorId}
+              onChange={updateAuthorId}
+              required
+              // placeholder="Image URL"
             />
           </label>
         </div>

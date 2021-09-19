@@ -20,7 +20,7 @@ const EditStoryForm = () => {
   const storiesArr = Object.values(stories);
 
   const currentStory = storiesArr.find(story => {
-    return story.id === +storyId
+    return story?.id === +storyId
   });
   const currentTitle = currentStory?.title;
   const currentImageUrl = currentStory?.imageUrl;
@@ -31,19 +31,20 @@ const EditStoryForm = () => {
   const [title, setTitle] = useState(currentTitle);
   const [imageUrl, setImageUrl] = useState(currentImageUrl);
   const [body, setBody] = useState(currentBody);
+  const [authorId, setAuthorId] = useState(currentAuthorId);
 
 
   const updateTitle = (e) => setTitle(e.target.value);
   const updateImageUrl = (e) => setImageUrl(e.target.value);
   const updateBody = (e) => setBody(e.target.value);
 
-  useEffect(() => {
-    dispatch(getStories());
-    dispatch(getStory());
-    dispatch(editStory());
-    dispatch(deleteStory());
-    dispatch(restoreUser());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(getStories());
+  //   dispatch(getStory());
+  //   dispatch(editStory());
+
+  //   dispatch(restoreUser());
+  // }, [dispatch]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -53,12 +54,13 @@ const EditStoryForm = () => {
       title,
       imageUrl,
       body,
-      authorId: (currentStory?.authorId).toString(),
+      authorId,
+      id: storyId
     }
 
     if (editedStory) {
       dispatch(editStory(editedStory))
-      history.push(`/users/${sessionUser.id}`);
+      history.push(`/users/${sessionUser?.id}`);
     }
   };
 
@@ -108,9 +110,6 @@ const EditStoryForm = () => {
           </label>
         </div>
         <button type="submit">Edit</button>
-        <NavLink to={`/users/${sessionUser.id}`} className='deleteStoryButton' onClick={() => handleDelete()}>
-          <button>Delete</button>
-        </NavLink>
         <NavLink to={`/users/${sessionUser.id}`} className='cancelButton'>
           <button>Cancel</button>
         </NavLink>
