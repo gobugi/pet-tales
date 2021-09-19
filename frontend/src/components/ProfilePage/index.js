@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector  } from 'react-redux';
-// import * as sessionActions from '../../store/session';
 import { Redirect, useLocation } from 'react-router-dom';
 import './ProfilePage.css';
 
@@ -51,7 +50,7 @@ const ProfilePage = () => {
         <h2 className="profileStoriesTitle">~ {currentUserId === +userId ? 'My' : `${author}'s` } stories ~</h2>
         {(currentUserId === +userId) &&
         <a href='/stories/new'>
-          <i class="fas fa-plus-circle fa-3x"></i>
+          <i className="fas fa-plus-circle fa-3x"></i>
         </a>
         }
         <table className="profileStoriesTable">

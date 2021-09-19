@@ -1,5 +1,5 @@
 import { csrfFetch } from "./csrf";
-import { useLocation } from 'react-router-dom';
+
 const pathUrl = window.location?.pathname.split('/');
 const storyId = pathUrl[pathUrl.length - 2];
 
@@ -52,19 +52,6 @@ export const getStories = () => async (dispatch) => {
   dispatch(setStories(stories));
 };
 
-// export const editStory = (story) => async dispatch => {
-//   const response = await csrfFetch(`/api/stories/${story.id}`, {
-//     method: 'PUT',
-//     headers: {'Content-Type': 'application/json'},
-//     body: JSON.stringify({story})
-//   });
-
-//   if (response.ok) {
-//     const updatedStory = await response.json();
-//     dispatch(updateStory(updatedStory));
-//     return updatedStory
-//   }
-// };
 
 export const editStory = (story) => async dispatch => {
   const res = await csrfFetch(`/api/stories/${storyId}`, {

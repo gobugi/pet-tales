@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useLocation, NavLink } from 'react-router-dom';
 import { getStories, getStory, editStory, deleteStory } from '../../store/stories';
+import { restoreUser } from '../../store/session';
 import './EditStoryForm.css';
 
 const EditStoryForm = () => {
@@ -41,7 +42,7 @@ const EditStoryForm = () => {
     dispatch(getStory());
     dispatch(editStory());
     dispatch(deleteStory());
-    // dispatch(restoreUser());
+    dispatch(restoreUser());
   }, [dispatch]);
 
   const handleSubmit = async (e) => {
