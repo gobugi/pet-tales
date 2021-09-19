@@ -150,7 +150,7 @@
   text-align: right;
   vertical-align: middle;
   float: right;
-  margin-right: -120px;
+  margin-right: 0px;
   cursor: pointer;
   position: relative;
 }
@@ -161,22 +161,15 @@
   font-size: 20px;
   background-color: #EFEFEF;
   color: #2B5292;
-  margin-top: 15px;
+  margin-top: 0px;
   border-radius: 8px;
   height: 33px;
   width: fit-content;
   text-align: right;
   vertical-align: middle;
   float: right;
-  margin-right: 10px;
+  margin-right: 15px;
   cursor: pointer;
   position: relative;
 
-}
-
-#deleteForm {
-  margin-top: 0px;
-  float: right;
-  margin-right: 150px;
-  width: 10%;
 }

@@ -88,12 +88,12 @@ const StoryPage = () => {
                     <tr><td className="smallStoryBody">{`${currentStory?.body}`}</td></tr>
                   </table>
                     {(currentUser?.id === currentUserId) &&
+                      <button className='storyPageDeleteButton' onClick={() => handleDelete(currentStory?.id)}>Delete</button>
+                    }
+                    {(currentUser?.id === currentUserId) &&
                       <NavLink to={`/stories/${storyId}/edit`}>
                         <button className="storyPageEditButton">Edit</button>
                       </NavLink>
-                    }
-                    {(currentUser?.id === currentUserId) &&
-                      <button className='storyPageDeleteButton' onClick={() => handleDelete(currentStory?.id)}>Delete</button>
                     }
                 </td>
               </tr>
