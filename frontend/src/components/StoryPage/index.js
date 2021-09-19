@@ -64,7 +64,7 @@ const StoryPage = () => {
                 <td className="smallStoryTd">
                   <table>
                     <tr><td className="smallStoryTitle">{`${currentStory?.title}`}</td></tr>
-                    <tr><a className="smallStoryAuthor" ><td className="smallStoryAuthor">{`by ${currentUser?.username}`}</td></a></tr>
+                    <tr><a className="smallStoryAuthor" href={`/users/${userId}`}><td className="smallStoryAuthor">{`by ${currentUser?.username}`}</td></a></tr>
                     <tr><td className="smallStoryBody">{`${currentStory?.body}`}</td></tr>
                   </table>
                   {(currentUser?.id === currentUserId) &&
