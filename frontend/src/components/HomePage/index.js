@@ -15,11 +15,13 @@ const HomePage = () => {
     const randomStoriesArr = storiesArr.sort(() => 0.5 - Math.random());
     let fourRandomStories = randomStoriesArr.slice(0, 4);
 
+
   const users = useSelector((state) => state.users);
   const usersArr = Object.values(users);
 
   const session = useSelector((state) => state.session);
   const sessionArr = Object.values(session);
+
 
 
   useEffect(() => {
@@ -45,11 +47,11 @@ const HomePage = () => {
             {fourRandomStories.map((story) =>
             <table className="homeStoryTable">
               <tr className="homeStoryTr">
-                <td className="homeStoryImg"><a className="storyImages" href={`/users/${story.authorId}`}><img className="storyImages" src={`${story.imageUrl}`} alt="petImage" /></a></td>
+                <td className="homeStoryImg"><a className="storyImages" href={`/stories/${story.id}`}><img className="storyImages" src={`${story.imageUrl}`} alt="petImage" /></a></td>
                 <td className="homeStoryTd">
                     <table>
-                    <tr><a className="homeStoryTitle" href={`/users/${story.authorId}`}><td className="homeStoryTitle">{story.title}</td></a></tr>
-                    <tr><a className="homeStoryAuthor" href={`/users/${story.authorId}`}><td className="homeStoryAuthor">{`by ${usersArr.find(user => user.id === story.authorId)?.username}`}</td></a></tr>
+                    <tr><a className="homeStoryTitle" href={`/stories/${story.id}`}><td className="homeStoryTitle">{story.title}</td></a></tr>
+                    <tr><a className="homeStoryAuthor" href={`/users/${story.authorId}`}><td className="homeStoryAuthor">{`by ${usersArr.find(user => +user.id === +story.authorId)?.username}`}</td></a></tr>
                     <tr><td className="homeStoryBody">{story.body}</td></tr>
                     </table>
                 </td>

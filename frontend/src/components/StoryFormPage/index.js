@@ -1,64 +1,56 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector  } from 'react-redux';
-import * as sessionActions from '../../store/session';
-import { Redirect } from 'react-router-dom';
+import { postStory } from '../../store/stories';
+import { useHistory } from 'react-router-dom';
 import './StoryFormPage.css';
 
-function StoryFormPage({ user }) {
+const StoryFormPage = () => {
   const dispatch = useDispatch();
-  const [showForm, setShowForm] = useState(false);
+  const history = useHistory();
+
+
+  const [title, setTitle] = useState('');
+  const [imageUrl, setImageUrl] = useState('');
+  const [body, setBody] = useState('');
+
+
+  const updateTitle = (e) => setTitle(e.target.value);
+  const updateImageUrl = (e) => setImageUrl(e.target.value);
+  const updateBody = (e) => setBody(e.target.value);
+
 
   const sessionUser = useSelector(state => state.session.user);
-  const [credential, setCredential] = useState('');
-  const [password, setPassword] = useState('');
-  const [errors, setErrors] = useState([]);
 
-  const openForm = () => {
-    if (showForm) return;
-    setShowForm(true);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    let createdStory;
+    createdStory = {
+      title,
+      imageUrl,
+      body,
+      authorId: sessionUser.id,
+    }
+
+    if (createdStory) {
+      dispatch(postStory(createdStory))
+      history.push(`/users/${sessionUser.id}`);
+    }
   };
 
-  useEffect(() => {
-    if (!showForm) return;
-
-    const closeForm = () => {
-      setShowForm(false);
-    };
-
-    document.addEventListener('click', closeForm);
-
-    return () => document.removeEventListener("click", closeForm);
-  }, [showForm]);
-
-  const logout = (e) => {
-    e.preventDefault();
-    dispatch(sessionActions.logout());
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setErrors([]);
-    return dispatch(sessionActions.login({ credential, password }))
-      .catch(async (res) => {
-        const data = await res.json();
-        if (data && data.errors) setErrors(data.errors);
-      });
-  }
 
   return (
     <div className='formContainer'>
       <form onSubmit={handleSubmit}>
-        {/* <ul>
-          {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-        </ul> */}
         <div>
           <label>
             Title
             <input
               type="text"
-              // value={credential}
-              // onChange={(e) => setCredential(e.target.value)}
+              value={title}
+              onChange={updateTitle}
               required
+              // placeholder="Title"
             />
           </label>
         </div>
@@ -67,19 +59,20 @@ function StoryFormPage({ user }) {
             Image URL
             <input
               type="text"
-              // value={credential}
-              // onChange={(e) => setCredential(e.target.value)}
+              value={imageUrl}
+              onChange={updateImageUrl}
               required
+              // placeholder="Image URL"
             />
           </label>
         </div>
         <div>
           <label>
-            Comment
+          New story
             <textarea
-              // type="text"
-              // value={password}
-              // onChange={(e) => setPassword(e.target.value)}
+              value={body}
+              onChange={updateBody}
+              placeholder="Type your story here."
               rows="7"
               cols="28"
               required

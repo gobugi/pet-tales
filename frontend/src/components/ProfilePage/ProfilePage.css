@@ -120,6 +120,13 @@
   margin-bottom: 3px;
 }
 
+.profileStoryAuthor:link {
+  color: black;
+}
+.profileStoryAuthor:visited {
+  color: black;
+}
+
 .profileStoryBody {
   float: left;
   font-family: 'Roboto Slab', serif;

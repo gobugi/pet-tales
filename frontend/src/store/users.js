@@ -1,3 +1,5 @@
+// import { csrfFetch } from "./csrf";
+
 // Define Action Types as Constants
 const SET_USERS = 'users/setUsers';
 
@@ -20,10 +22,13 @@ const initialState = {};
 // Define a reducer
 const usersReducer = (state = initialState, action) => {
   switch (action.type) {
-    case SET_USERS:
+    case SET_USERS: {
       const newState = {};
-      action.users.forEach(user => newState[user.id] = user);
+      Object.values(action.users).forEach(user => {
+        newState[user.id] = user;
+      });
       return newState;
+    }
     default:
       return state;
   }

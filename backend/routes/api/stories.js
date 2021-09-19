@@ -1,50 +1,119 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
 
-const { Story } = require('../../db/models');
+const { Story, Comment } = require('../../db/models');
+const { requireAuth, restoreUser } = require('../../utils/auth');
 
 const router = express.Router();
 
 
+// Get Stories
+router.get('/', asyncHandler(async (req, res) => {
+  const stories = await Story.findAll({
+    include: Comment
+  });
+  res.json(stories);
+}));
 
-// Get Story
-router.get('/:id', asyncHandler(async (req, res) => {
+
+// Get Comments for a Story
+router.get('/:id(\\d+)/comments/', asyncHandler(async (req, res) => {
+  const id = req.params.id;
+  const comments = await Comment.findAll({
+    where: { storyId: +id }
+  });
+  res.json(comments);
+}));
+
+
+// Get a Story
+router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
   const id = req.params.id;
   const story = await Story.findByPk(id);
   return res.json(story)
 }));
 
-router.get('/', asyncHandler(async (req, res) => {
-  const stories = await Story.findAll();
-  res.json(stories);
-}));
 
-
-// Create Story
+// Create a Story
 router.post('/', asyncHandler(async (req, res) => {
-    const { imageUrl, authorId, title, body } = req.body;
-    const story = await Story.create({ imageUrl, authorId, title, body });
-    return res.json(story);
+    const newStory = await Story.create(req.body);
+    return res.json(newStory)
+
   }),
 );
 
 // Edit a Story
 router.put('/:id', asyncHandler(async (req, res) => {
-  const id = req.params.id;
-  const { imageUrl, authorId, title, body } = req.body;
-  await Story.update({ imageUrl, authorId, title, body })
-  const story = await Story.findByPk(id);
-  return res.json(story)
-}));
+  const storyId = req.params.id;
+  const { imageUrl, title, body, authorId } = req.body;
 
-//Delete Story
+  const storyEdit = await Story.findByPk(storyId);
+  await storyEdit.update({ imageUrl, title, body, authorId })
+  return res.json(storyEdit);
+  }),
+);
+
+
+
+//Delete a Story
 router.delete('/:id', asyncHandler(async (req, res) => {
   const storyId = req.params.id;
   const story = await Story.findByPk(storyId);
 
-  await Story.destroy({ where: { id: story.id } });
-  const destroyed = story.id;
+  await story.destroy();
+  return res.json({})
+}))
+
+
+
+
+
+
+
+
+
+// Get a Comment
+router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
+  const id = req.params.id;
+  const comment = await Comment.findByPk(id);
+  res.json(comment);
+}));
+
+
+
+// Create Comment
+router.post('/', asyncHandler(async (req, res) => {
+    const { userId, storyId, body } = req.body;
+    const comment = await Comment.create({ userId, storyId, body });
+    return res.json({ comment });
+  }),
+);
+
+// Edit Comment
+router.put('/:id', asyncHandler(async (req, res) => {
+  const id = req.params.id;
+  const { userId, storyId, body } = req.body;
+  await Comment.update({ userId, storyId, body })
+  const comment = await Comment.findByPk(id);
+  return res.json(comment)
+}));
+
+//Delete Comment
+router.delete('/:id', asyncHandler(async (req, res) => {
+  const commentId = req.params.id;
+  const comment = await Comment.findByPk(commentId);
+  if (!comment) return res.status(404).json({});
+
+  await Comment.destroy({ where: { id: comment.id } });
+  const destroyed = comment.id;
   return res.json({ destroyed })
 }))
+
+
+
+
+
+
+
 
 module.exports = router;

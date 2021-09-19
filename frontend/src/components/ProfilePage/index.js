@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector  } from 'react-redux';
-import * as sessionActions from '../../store/session';
+// import * as sessionActions from '../../store/session';
 import { Redirect, useLocation } from 'react-router-dom';
 import './ProfilePage.css';
 
@@ -22,9 +22,10 @@ const ProfilePage = () => {
   const sessionArr = Object.values(session);
 
   const location = useLocation();
-  const userId = location?.pathname.split('/').pop(-1);
+  const userId = window.location?.pathname.split('/').pop(-1);
   const author = usersArr[+userId - 1]?.username;
   const currentUser = sessionArr[0]?.username;
+  const currentUserId = sessionArr[0]?.id;
 
   const myStories = storiesArr.filter((story) => story.authorId === +userId)
 
@@ -39,16 +40,16 @@ const ProfilePage = () => {
       <div className="profileBanner" style={{backgroundImage: 'url(/images/profilebanner.jpg)', backgroundRepeat: 'no-repeat', backgroundSize: '100%'}}>
         <div className="bannerDarkOverlay">
             <div id={`welcome`}>
-              {(currentUser === author) && `Welcome`}
+              {(currentUserId === +userId) && `Welcome`}
             </div>
             <div id={`profileBannerUser`}>
-              {(currentUser === author) && currentUser}
+              {(currentUserId === +userId) && currentUser}
             </div>
         </div>
       </div>
       <div className="profileStoriesContainer">
-        <h2 className="profileStoriesTitle">~ {currentUser === author ? 'My' : `${author}'s` } stories ~</h2>
-        {(currentUser === author) &&
+        <h2 className="profileStoriesTitle">~ {currentUserId === +userId ? 'My' : `${author}'s` } stories ~</h2>
+        {(currentUserId === +userId) &&
         <a href='/stories/new'>
           <i class="fas fa-plus-circle fa-3x"></i>
         </a>
@@ -58,10 +59,10 @@ const ProfilePage = () => {
             {myStories.map((story) =>
             <table className="profileStoryTable">
               <tr className="profileStoryTr">
-                <td className="profileStoryImg"><a className="storyImages" href={`/users/${story.authorId}`}><img className="storyImages" src={`${story.imageUrl}`} alt="petImage" /></a></td>
+                <td className="profileStoryImg"><a className="storyImages" href={`/stories/${story.id}`}><img className="storyImages" src={`${story.imageUrl}`} alt="petImage" /></a></td>
                 <td className="profileStoryTd">
                     <table>
-                    <tr><a className="profileStoryTitle" href={`/users/${story.authorId}`}><td className="profileStoryTitle">{story.title}</td></a></tr>
+                    <tr><a className="profileStoryTitle" href={`/stories/${story.id}`}><td className="profileStoryTitle">{story.title}</td></a></tr>
                     <tr><a className="profileStoryAuthor" href={`/users/${story.authorId}`}><td className="profileStoryAuthor">{`by ${author}`}</td></a></tr>
                     <tr><td className="profileStoryBody">{story.body}</td></tr>
                     </table>
