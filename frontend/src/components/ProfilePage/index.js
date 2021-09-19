@@ -22,7 +22,7 @@ const ProfilePage = () => {
   const sessionArr = Object.values(session);
 
   const location = useLocation();
-  const userId = location?.pathname.split('/').pop(-1);
+  const userId = window.location?.pathname.split('/').pop(-1);
   const author = usersArr[+userId - 1]?.username;
   const currentUser = sessionArr[0]?.username;
   const currentUserId = sessionArr[0]?.id;

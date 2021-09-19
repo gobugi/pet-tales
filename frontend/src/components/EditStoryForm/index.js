@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory, useLocation, NavLink } from 'react-router-dom';
 import { getStories, getStory, editStory, deleteStory } from '../../store/stories';
 import './EditStoryForm.css';
 
@@ -10,15 +10,14 @@ const EditStoryForm = () => {
   const location = useLocation();
 
 
+  // const [title, setTitle] = useState('');
+  // const [imageUrl, setImageUrl] = useState('');
+  // const [body, setBody] = useState('');
+
+
   const sessionUser = useSelector(state => state.session.user);
-  if(!sessionUser) history.push('/');
 
-  const [title, setTitle] = useState('');
-  const [imageUrl, setImageUrl] = useState('');
-  const [body, setBody] = useState('');
-
-
-  const pathUrl = location?.pathname.split('/');
+  const pathUrl = window.location?.pathname.split('/');
   const storyId = pathUrl[pathUrl.length - 2];
 
   const stories = useSelector((state) => state.stories);
@@ -26,39 +25,38 @@ const EditStoryForm = () => {
 
   const currentStory = storiesArr.find(story => {
     return story.id === +storyId
-  })
-
+  });
   const currentTitle = currentStory?.title;
   const currentImageUrl = currentStory?.imageUrl;
   const currentBody = currentStory?.body;
+  const currentAuthorId = currentStory?.authorId;
 
-  console.log(currentBody)
 
-  // const storiesArr = Object.values(stories);
-  // const currentStory = storiesArr[+storyId - 1];
-
-  useEffect(() => {
-    dispatch(getStories());
-    dispatch(getStory());
-    // dispatch(restoreUser());
-  }, [dispatch]);
+  const [title, setTitle] = useState(currentTitle);
+  const [imageUrl, setImageUrl] = useState(currentImageUrl);
+  const [body, setBody] = useState(currentBody);
 
 
   const updateTitle = (e) => setTitle(e.target.value);
   const updateImageUrl = (e) => setImageUrl(e.target.value);
   const updateBody = (e) => setBody(e.target.value);
 
-
+  useEffect(() => {
+    dispatch(getStories());
+    dispatch(getStory());
+    dispatch(editStory());
+    // dispatch(restoreUser());
+  }, [dispatch]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     let editedStory;
     editedStory = {
-      title: currentTitle,
-      imageUrl: currentImageUrl,
-      body: currentBody,
-      authorId: sessionUser.id,
+      title,
+      imageUrl,
+      body,
+      authorId: (currentStory?.authorId).toString(),
     }
 
     if (editedStory) {
@@ -105,11 +103,16 @@ const EditStoryForm = () => {
               rows="7"
               cols="28"
               required
-            >
-            </textarea>
+            />
           </label>
         </div>
-        <button type="submit">Submit</button>
+        <button type="submit">Edit</button>
+        <NavLink to='/' className='deleteButton'>
+          <button>Delete</button>
+        </NavLink>
+        <NavLink to='/' className='cancelButton'>
+          <button>Cancel</button>
+        </NavLink>
       </form>
     </div>
   );

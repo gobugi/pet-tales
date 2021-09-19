@@ -1,4 +1,8 @@
 import { csrfFetch } from "./csrf";
+import { useLocation } from 'react-router-dom';
+const pathUrl = window.location?.pathname.split('/');
+const storyId = pathUrl[pathUrl.length - 2];
+
 
 // Define Action Types as Constants
 const SET_STORIES = 'stories/setStories';
@@ -48,21 +52,37 @@ export const getStories = () => async (dispatch) => {
   dispatch(setStories(stories));
 };
 
-export const editStory = (story, id) => async dispatch => {
-  const response = await csrfFetch(`/api/stories/${story.id}`, {
+// export const editStory = (story) => async dispatch => {
+//   const response = await csrfFetch(`/api/stories/${story.id}`, {
+//     method: 'PUT',
+//     headers: {'Content-Type': 'application/json'},
+//     body: JSON.stringify({story})
+//   });
+
+//   if (response.ok) {
+//     const updatedStory = await response.json();
+//     dispatch(updateStory(updatedStory));
+//     return updatedStory
+//   }
+// };
+
+export const editStory = (story) => async dispatch => {
+  const res = await csrfFetch(`/api/stories/${storyId}`, {
     method: 'PUT',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({...story, id})
+    headers: {'Content-Type' : 'application/json'},
+    body: JSON.stringify(story)
   });
 
-  if (response.ok) {
-    const updatedStory = await response.json();
-    dispatch(updateStory(updatedStory));
+  if (res.ok) {
+    const editedStory = await res.json();
+    dispatch(updateStory(editedStory));
+    return editedStory
   }
-};
+}
 
-export const getStory = (id) => async dispatch => {
-  const response = await fetch(`/api/stories/${id}`);
+
+export const getStory = (story) => async dispatch => {
+  const response = await fetch(`/api/stories/${storyId}`);
 
   if (response.ok) {
     const story = await response.json();
@@ -74,7 +94,7 @@ export const postStory = (story) => async dispatch => {
   const response = await csrfFetch('/api/stories', {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify(story)
+    body: JSON.stringify({story})
   })
   if (response.ok) {
     const newStory = await response.json();
