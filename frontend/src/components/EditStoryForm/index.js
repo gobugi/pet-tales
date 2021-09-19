@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useLocation, NavLink } from 'react-router-dom';
-import { getStories, getStory, editStory } from '../../store/stories';
+import { getStories, editStory } from '../../store/stories';
 import { restoreUser } from '../../store/session';
 import './EditStoryForm.css';
 
@@ -40,7 +40,6 @@ const EditStoryForm = () => {
 
   useEffect(() => {
     dispatch(getStories());
-    dispatch(getStory());
     dispatch(editStory());
     dispatch(restoreUser());
   }, [dispatch]);

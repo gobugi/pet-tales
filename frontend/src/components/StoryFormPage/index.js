@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector  } from 'react-redux';
-import { postStory, getStory, getStories, editStory, deleteStory } from '../../store/stories';
+import { postStory, getStories, editStory, deleteStory } from '../../store/stories';
 import { getUsers } from '../../store/users';
 import { restoreUser } from '../../store/session';
 import { useHistory } from 'react-router-dom';
@@ -50,8 +50,6 @@ const StoryFormPage = () => {
       history.push(`/users/${sessionUser?.id}`);
     // }
   };
-
-  console.log(getStory[0]?.id)
 
 
   return (

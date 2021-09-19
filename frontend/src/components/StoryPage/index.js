@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector  } from 'react-redux';
 import { NavLink, useParams, useLocation, useHistory, Redirect } from 'react-router-dom';
-import { getStory, getStories, deleteStory } from '../../store/stories'
+import { getStories, deleteStory } from '../../store/stories'
 import { getUsers } from '../../store/users';
 import { restoreUser } from '../../store/session';
 import { getComments } from '../../store/comments';
@@ -47,18 +47,21 @@ const StoryPage = () => {
   const id = +storyId
 
   useEffect(() => {
-    // dispatch(getStory(id));
     dispatch(getStories());
     dispatch(getUsers());
     dispatch(restoreUser());
-    dispatch(deleteStory());
+    // dispatch(deleteStory());
   }, [dispatch]);
 
+  async function handleDelete(storyId) {
+    await dispatch(deleteStory(storyId))
+    // history.push('/')
+  }
 
-  const handleDelete = (id) => {
-    dispatch(deleteStory(id));
-    history.push(`/users/${sessionUser?.id}`);
-}
+//   const handleDelete = (id) => {
+//     dispatch(deleteStory(id));
+//     // history.push(`/users/${sessionUser?.id}`);
+// }
 
   return (
     <div className='storyDiv'>
@@ -79,12 +82,14 @@ const StoryPage = () => {
                     <tr><td className="smallStoryBody">{`${currentStory?.body}`}</td></tr>
                   </table>
                     {(currentUser?.id === currentUserId) &&
-                      <button className='storyPageDeleteButton' onClick={() => handleDelete(currentStory?.id)}>Delete</button>
+                      <a href={`/stories/${storyId}/edit`}>
+                        <button className="storyPageEditButton">Edit</button>
+                      </a>
                     }
                     {(currentUser?.id === currentUserId) &&
-                      <NavLink to={`/stories/${storyId}/edit`}>
-                        <button className="storyPageEditButton">Edit</button>
-                      </NavLink>
+                      <a href={`/users/${sessionUser?.id}`}>
+                        <button className='storyPageDeleteButton' onClick={() => {handleDelete(currentStory?.id)}}>Delete</button>
+                      </a>
                     }
                 </td>
               </tr>

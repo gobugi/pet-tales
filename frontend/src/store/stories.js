@@ -2,6 +2,7 @@ import { csrfFetch } from "./csrf";
 
 const pathUrl = window.location?.pathname.split('/');
 const storyId = pathUrl[pathUrl.length - 1];
+const StoryDeleteId = parseInt(storyId, 10);
 const storyEditId = pathUrl[pathUrl.length - 2];
 
 
@@ -18,12 +19,12 @@ const setStories = (stories) => ({
   stories,
 });
 
-const loadStory = (story) => {
-  return {
-      type: LOAD_STORY,
-      story,
-  }
-};
+// const loadStory = (story) => {
+//   return {
+//       type: LOAD_STORY,
+//       story,
+//   }
+// };
 
 const removeStory = (story) => {
   return {
@@ -69,14 +70,14 @@ export const editStory = (story, storyEditId) => async dispatch => {
 }
 
 
-export const getStory = (story) => async dispatch => {
-  const response = await fetch(`/api/stories/${storyId}`);
+// export const getStory = (story) => async dispatch => {
+//   const response = await fetch(`/api/stories/${storyId}`);
 
-  if (response.ok) {
-    const story = await response.json();
-    dispatch(loadStory(story));
-  }
-};
+//   if (response.ok) {
+//     const story = await response.json();
+//     dispatch(loadStory(story));
+//   }
+// };
 
 export const postStory = (story) => async dispatch => {
   const response = await csrfFetch('/api/stories', {
@@ -91,14 +92,22 @@ export const postStory = (story) => async dispatch => {
   }
 };
 
-export const deleteStory = (story, storyId) => async dispatch => {
+// export const deleteStory = (story) => async dispatch => {
+//   const response = await csrfFetch(`/api/stories/${storyId}`, {
+//     method: 'DELETE',
+//     body: JSON.stringify(story)
+//   })
+//   if (response.ok) {
+//     dispatch(removeStory(story));
+//   }
+//   return response;
+// };
+
+export const deleteStory = (storyId) => async (dispatch) => {
   const response = await csrfFetch(`/api/stories/${storyId}`, {
     method: 'DELETE',
-    body: JSON.stringify(story)
-  })
-  if (response.ok) {
-    dispatch(removeStory(story));
-  }
+  });
+  dispatch(removeStory());
   return response;
 };
 
@@ -128,13 +137,13 @@ const storiesReducer = (state = initialState, action) => {
       });
       return newState;
     }
-    case LOAD_STORY: {
-      const newState = {
-        ...state,
-        [action.story.id]: action.story,
-      };
-    return newState;
-    }
+    // case LOAD_STORY: {
+    //   const newState = {
+    //     ...state,
+    //     [action.story.id]: action.story,
+    //   };
+    // return newState;
+    // }
     default:
       return state;
   }
