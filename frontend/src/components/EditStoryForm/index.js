@@ -104,7 +104,7 @@ const EditStoryForm = () => {
           </label>
         </div>
         <button type="submit">Edit</button>
-        <NavLink to={`/users/${sessionUser.id}`} className='cancelButton'>
+        <NavLink to={`/stories/${storyId}`} className='cancelButton'>
           <button>Cancel</button>
         </NavLink>
       </form>
