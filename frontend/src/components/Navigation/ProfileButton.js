@@ -45,11 +45,11 @@ function ProfileButton({ user }) {
       {showMenu && (
         <div>
           <ul className="profile-dropdown" style={{listStyleType: 'none'}}>
-            <li><a href={`/users/${user.id}`} style={{textDecoration: 'none'}}>{user.username}</a></li>
-            <li>{user.email}</li>
-            <li>
-              <button className="logoutButton" onClick={logoutAndRedirect}>
-                <i className="fas fa-sign-out-alt"></i> Log Out
+            <li key={user.id}><a href={`/users/${user.id}`} style={{textDecoration: 'none'}}>{user.username}</a></li>
+            <li key={user.email}>{user.email}</li>
+            <li key={user.username}>
+              <button key={`${user.id}logoutButton`} className="logoutButton" onClick={logoutAndRedirect}>
+                <i key={`${user.id}logout`} className="fas fa-sign-out-alt"></i> Log Out
               </button>
             </li>
           </ul>

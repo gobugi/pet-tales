@@ -80,10 +80,10 @@ export const editStory = (story, storyEditId) => async dispatch => {
 // };
 
 export const postStory = (story) => async dispatch => {
-  const response = await csrfFetch('/api/stories', {
+  const response = await csrfFetch('/api/stories/', {
     method: 'POST',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({story})
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(story)
   })
   if (response.ok) {
     const newStory = await response.json();
@@ -92,16 +92,6 @@ export const postStory = (story) => async dispatch => {
   }
 };
 
-// export const deleteStory = (story) => async dispatch => {
-//   const response = await csrfFetch(`/api/stories/${storyId}`, {
-//     method: 'DELETE',
-//     body: JSON.stringify(story)
-//   })
-//   if (response.ok) {
-//     dispatch(removeStory(story));
-//   }
-//   return response;
-// };
 
 export const deleteStory = (storyId) => async (dispatch) => {
   const response = await csrfFetch(`/api/stories/${storyId}`, {
