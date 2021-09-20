@@ -11,6 +11,7 @@ import ProfilePage from './components/ProfilePage';
 import StoryPage from './components/StoryPage';
 import EditStoryForm from './components/EditStoryForm';
 import EditCommentForm from './components/EditCommentForm';
+import DemoLogin from './components/DemoLogin';
 
 function App() {
   const dispatch = useDispatch();
@@ -41,6 +42,9 @@ function App() {
           </Route>
           <Route exact path="/stories/:id">
             <StoryPage />
+          </Route>
+          <Route exact path="/login/demo">
+            <DemoLogin />
           </Route>
           <Route path="/login">
             <LoginFormPage />
