@@ -13,14 +13,14 @@ router.get('/', asyncHandler(async (req, res) => {
 }));
 
 
-// Get Comments for a Story
-router.get('/:id(\\d+)/comments/', asyncHandler(async (req, res) => {
-  const id = req.params.id;
-  const comments = await Comment.findAll({
-    where: { storyId: +id }
-  });
-  res.json(comments);
-}));
+// // Get Comments for a Story
+// router.get('/:id(\\d+)/comments/', asyncHandler(async (req, res) => {
+//   const id = req.params.id;
+//   const comments = await Comment.findAll({
+//     where: { storyId: +id }
+//   });
+//   res.json(comments);
+// }));
 
 
 // Get a Story

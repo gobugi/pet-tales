@@ -3,8 +3,6 @@ import { useDispatch, useSelector  } from 'react-redux';
 import { Redirect, useLocation, useHistory, NavLink } from 'react-router-dom';
 import './CommentsFromAStory.css';
 
-import CreateComment from '../CreateComment';
-
 import { getComments, deleteComment, postComment } from '../../store/comments';
 import { getStories } from '../../store/stories';
 import { getUsers } from '../../store/users';
@@ -39,7 +37,45 @@ const CommentsFromAStory = () => {
     return story?.id === +urlStoryId
   });
 
+  const currentComment = commentsArr.find(comment => {
+    return comment?.storyId === +urlStoryId
+  });
+
   const allCommentsFromStory = commentsArr.filter((comment) => comment?.storyId === currentStory?.id)
+  const storyIdNum = +urlStoryId
+  const loggedInId = sessionUser?.id
+
+  const [userId, setUserId] = useState('');
+  const [storyId, setStoryId] = useState('');
+  const [body, setBody] = useState('');
+
+
+  const updateUserId = (e) => setUserId(e.target.value);
+  const updateStoryId = (e) => setStoryId(e.target.value);
+  const updateBody = (e) => setBody(e.target.value);
+
+
+  const [showMenu, setShowMenu] = useState(false);
+
+  const openMenu = () => {
+    if (showMenu) return;
+    setShowMenu(true);
+  };
+
+  useEffect(() => {
+    if (!showMenu) return;
+
+    const closeMenu = () => {
+      setShowMenu(true);
+    };
+
+    document.addEventListener('click', closeMenu);
+
+    return () => document.removeEventListener("click", closeMenu);
+  }, [showMenu]);
+
+
+
 
 
 
@@ -50,36 +86,81 @@ const CommentsFromAStory = () => {
     dispatch(restoreUser());
   }, [dispatch]);
 
+
+
+  async function handlePost(e) {
+    e.preventDefault();
+
+    let createdComment
+    createdComment = {
+      userId: loggedInId,
+      storyId: storyIdNum,
+      body,
+    }
+
+    await dispatch(postComment(createdComment))
+  }
+
+
+
   async function handleDelete(commentId) {
     await dispatch(deleteComment(commentId))
     // history.push('/')
   }
 
-  const handlePost = async (e) => {
-    e.preventDefault();
-
-    let createdComment
-    createdComment = {
-      userId,
-      storyId,
-      body,
-      id: currentComment
-    }
-
-    const newComment = await dispatch(postComment(createdComment))
-    if (newComment) {
-      history.push(`/stories/${urlStoryId}`);
-    }
-  };
-
-  // <CreateComment/>
-
   return (
     <div className='commentsDiv'>
       <div className="storyCommentsContainer">
         {(sessionUser) &&
-          <i className="fas fa-plus-circle fa-3x"></i>
-        }
+          <i onClick={openMenu} className="fas fa-plus-circle fa-3x"></i>}
+          {showMenu && (
+            <div>
+              {/* <div>
+                <label>
+                  userId
+                  <input
+                    type="number"
+                    value={loggedInId}
+                    onChange={updateUserId}
+                    required
+                    // placeholder="userId"
+                  />
+                </label>
+              </div>
+              <div>
+                <label>
+                  storyId
+                  <input
+                    type="number"
+                    value={storyIdNum}
+                    onChange={updateStoryId}
+                    required
+                    // placeholder="storyId"
+                  />
+                </label>
+              </div> */}
+              <div id="commentTextareaDiv">
+                <label>
+                  Comment
+                    <textarea
+                      value={body}
+                      onChange={(e) => setBody(e.target.value)}
+                      placeholder="Type your comment here."
+                      rows="7"
+                      cols="28"
+                      required
+                    />
+                  </label>
+                <a href={`/stories/${urlStoryId}`}>
+                  <button className='commentPostButton' onClick={() => {handlePost()}}>Post</button>
+                </a>
+                <a href={`/stories/${urlStoryId}`}>
+                  <button>Cancel</button>
+                </a>
+              </div>
+            </div>
+          )}
+
         <table className="storyCommentsTable">
           <tbody className="storyCommentsTbody">
             {allCommentsFromStory.map((comment) =>
