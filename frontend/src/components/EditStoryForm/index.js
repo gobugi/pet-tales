@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useLocation, NavLink } from 'react-router-dom';
-import { getStories, getStory, editStory, deleteStory } from '../../store/stories';
+import { getStories, editStory } from '../../store/stories';
+import { restoreUser } from '../../store/session';
 import './EditStoryForm.css';
 
 const EditStoryForm = () => {
@@ -19,7 +20,7 @@ const EditStoryForm = () => {
   const storiesArr = Object.values(stories);
 
   const currentStory = storiesArr.find(story => {
-    return story.id === +storyId
+    return story?.id === +storyId
   });
   const currentTitle = currentStory?.title;
   const currentImageUrl = currentStory?.imageUrl;
@@ -30,6 +31,7 @@ const EditStoryForm = () => {
   const [title, setTitle] = useState(currentTitle);
   const [imageUrl, setImageUrl] = useState(currentImageUrl);
   const [body, setBody] = useState(currentBody);
+  const [authorId, setAuthorId] = useState(currentAuthorId);
 
 
   const updateTitle = (e) => setTitle(e.target.value);
@@ -38,32 +40,27 @@ const EditStoryForm = () => {
 
   useEffect(() => {
     dispatch(getStories());
-    dispatch(getStory());
     dispatch(editStory());
-    dispatch(deleteStory());
-    // dispatch(restoreUser());
+    dispatch(restoreUser());
   }, [dispatch]);
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    // e.preventDefault();
 
     let editedStory;
     editedStory = {
       title,
       imageUrl,
       body,
-      authorId: (currentStory?.authorId).toString(),
+      authorId,
+      id: storyId
     }
 
     if (editedStory) {
-      dispatch(editStory(editedStory))
-      history.push(`/users/${sessionUser.id}`);
+      dispatch(editStory(editedStory, +storyId))
+      history.push(`/users/${sessionUser?.id}`);
     }
   };
-
-  const handleDelete = (currentStory) => {
-    dispatch(deleteStory(currentStory));
-}
 
 
   return (
@@ -107,10 +104,7 @@ const EditStoryForm = () => {
           </label>
         </div>
         <button type="submit">Edit</button>
-        <NavLink to={`/users/${sessionUser.id}`} className='deleteStoryButton' onClick={() => handleDelete()}>
-          <button>Delete</button>
-        </NavLink>
-        <NavLink to={`/users/${sessionUser.id}`} className='cancelButton'>
+        <NavLink to={`/stories/${storyId}`} className='cancelButton'>
           <button>Cancel</button>
         </NavLink>
       </form>

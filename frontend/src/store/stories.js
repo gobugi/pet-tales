@@ -1,7 +1,9 @@
 import { csrfFetch } from "./csrf";
-import { useLocation } from 'react-router-dom';
+
 const pathUrl = window.location?.pathname.split('/');
-const storyId = pathUrl[pathUrl.length - 2];
+const storyId = pathUrl[pathUrl.length - 1];
+const StoryDeleteId = parseInt(storyId, 10);
+const storyEditId = pathUrl[pathUrl.length - 2];
 
 
 // Define Action Types as Constants
@@ -17,12 +19,12 @@ const setStories = (stories) => ({
   stories,
 });
 
-const loadStory = (story) => {
-  return {
-      type: LOAD_STORY,
-      story,
-  }
-};
+// const loadStory = (story) => {
+//   return {
+//       type: LOAD_STORY,
+//       story,
+//   }
+// };
 
 const removeStory = (story) => {
   return {
@@ -52,22 +54,9 @@ export const getStories = () => async (dispatch) => {
   dispatch(setStories(stories));
 };
 
-// export const editStory = (story) => async dispatch => {
-//   const response = await csrfFetch(`/api/stories/${story.id}`, {
-//     method: 'PUT',
-//     headers: {'Content-Type': 'application/json'},
-//     body: JSON.stringify({story})
-//   });
 
-//   if (response.ok) {
-//     const updatedStory = await response.json();
-//     dispatch(updateStory(updatedStory));
-//     return updatedStory
-//   }
-// };
-
-export const editStory = (story) => async dispatch => {
-  const res = await csrfFetch(`/api/stories/${storyId}`, {
+export const editStory = (story, storyEditId) => async dispatch => {
+  const res = await csrfFetch(`/api/stories/${storyEditId}`, {
     method: 'PUT',
     headers: {'Content-Type' : 'application/json'},
     body: JSON.stringify(story)
@@ -81,20 +70,20 @@ export const editStory = (story) => async dispatch => {
 }
 
 
-export const getStory = (story) => async dispatch => {
-  const response = await fetch(`/api/stories/${storyId}`);
+// export const getStory = (story) => async dispatch => {
+//   const response = await fetch(`/api/stories/${storyId}`);
 
-  if (response.ok) {
-    const story = await response.json();
-    dispatch(loadStory(story));
-  }
-};
+//   if (response.ok) {
+//     const story = await response.json();
+//     dispatch(loadStory(story));
+//   }
+// };
 
 export const postStory = (story) => async dispatch => {
-  const response = await csrfFetch('/api/stories', {
+  const response = await csrfFetch('/api/stories/', {
     method: 'POST',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({story})
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(story)
   })
   if (response.ok) {
     const newStory = await response.json();
@@ -103,14 +92,12 @@ export const postStory = (story) => async dispatch => {
   }
 };
 
-export const deleteStory = (story) => async dispatch => {
+
+export const deleteStory = (storyId) => async (dispatch) => {
   const response = await csrfFetch(`/api/stories/${storyId}`, {
     method: 'DELETE',
-    body: JSON.stringify(story)
-  })
-  if (response.ok) {
-    dispatch(removeStory(story));
-  }
+  });
+  dispatch(removeStory());
   return response;
 };
 
@@ -140,13 +127,13 @@ const storiesReducer = (state = initialState, action) => {
       });
       return newState;
     }
-    case LOAD_STORY: {
-      const newState = {
-        ...state,
-        [action.story.id]: action.story,
-      };
-    return newState;
-    }
+    // case LOAD_STORY: {
+    //   const newState = {
+    //     ...state,
+    //     [action.story.id]: action.story,
+    //   };
+    // return newState;
+    // }
     default:
       return state;
   }

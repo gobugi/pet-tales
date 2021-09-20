@@ -30,14 +30,14 @@ function App() {
           <Route exact path="/users/:id">
             <ProfilePage />
           </Route>
+          <Route exact path="/stories/new">
+            <StoryFormPage />
+          </Route>
           <Route exact path="/stories/:id/edit">
             <EditStoryForm />
           </Route>
           <Route exact path="/comments/:id/edit">
             <EditCommentForm />
-          </Route>
-          <Route exact path="/stories/new">
-            <StoryFormPage />
           </Route>
           <Route exact path="/stories/:id">
             <StoryPage />

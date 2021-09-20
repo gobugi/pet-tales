@@ -1,0 +1,175 @@
+.storyDiv {
+  margin-left: 0;
+  margin-right: 0;
+  top: 0;
+  text-align:left;
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  min-width: 1346px;
+  z-index: 900;
+}
+
+.storyBanner {
+  margin-left: 0;
+  margin-right: 0;
+  text-align:left;
+  position: relative;
+  height: 100%;
+  left: 0px;
+  right: 0px;
+  width: 100%;
+  min-height: 600px;
+  min-width: 1346px;
+  z-index: 900;
+  background-size: cover;
+  background-position: center;
+}
+
+.storyBannerDarkOverlay {
+  margin-left: 0;
+  margin-right: 0;
+  text-align:left;
+  position: absolute;
+  height: 600px;
+  left: 0px;
+  right: 0px;
+  background: linear-gradient(to right, transparent, #160d0d9d);
+}
+
+/* #welcome {
+  font-family: 'Playfair Display', serif;
+  font-weight: 550;
+  color: #EFEFEF;
+  font-size: 100px;
+  float: right;
+  margin-right: 200px;
+  padding: 0px;
+  margin-top: 215px;
+}
+
+#profileBannerUser {
+  font-family: 'Roboto Slab', serif;
+  font-weight: 100;
+  color: #EFEFEF;
+  font-size: 60px;
+  float: right;
+  margin-right: -133px;
+  padding: 0px;
+  font-style: italic;
+  padding: 0px;
+  margin-top: 350px;
+
+} */
+
+
+.bigStoryContainer {
+  margin-left: 0;
+  margin-right: 0;
+  text-align:left;
+  position: relative;
+  top: 134px;
+  height: 600px;
+  left: 0px;
+  right: 0px;
+  min-width: 1346px;
+  z-index: 900;
+}
+
+
+.bigStoryContainer {
+  text-align: center;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.bigStoryTable {
+  text-align: left;
+  width: 100%;
+
+}
+
+.bigStoryTitle {
+  font-family: 'Playfair Display', serif;
+  font-weight: 550;
+  font-size: 47px;
+  font-style: italic;
+  color: #2B5292;
+  margin-top: 0px;
+  margin-bottom: 50px;
+}
+
+.smallStoryTitle {
+  float: left;
+  font-family: 'Playfair Display', serif;
+  font-weight: 550;
+  font-size: 33px;
+  color: #2B5292;
+  margin-left: 15px;
+  margin-bottom: 5px;
+}
+
+.smallStoryAuthor {
+  float: left;
+  font-family: 'Roboto Slab', serif;
+  font-weight: 400;
+  margin-left: 15px;
+  margin-bottom: 3px;
+}
+
+.smallStoryAuthor:link {
+  color: black;
+}
+.smallStoryAuthor:visited {
+  color: black;
+}
+
+.smallStoryBody {
+  float: left;
+  font-family: 'Roboto Slab', serif;
+  font-weight: 300;
+  margin-left: 15px;
+}
+
+.smallStoryTable {
+  margin: 5px 0;
+}
+
+
+.storyPageDeleteButton {
+  font-family: 'Playfair Display', serif;
+  font-weight: 550;
+  font-size: 20px;
+  background-color: #EFEFEF;
+  color: #2B5292;
+  margin-top: 0px;
+  border-radius: 8px;
+  height: 33px;
+  width: fit-content;
+  text-align: right;
+  vertical-align: middle;
+  float: right;
+  margin-right: 0px;
+  cursor: pointer;
+  position: relative;
+}
+
+.storyPageEditButton {
+  font-family: 'Playfair Display', serif;
+  font-weight: 550;
+  font-size: 20px;
+  background-color: #EFEFEF;
+  color: #2B5292;
+  margin-top: 0px;
+  border-radius: 8px;
+  height: 33px;
+  width: fit-content;
+  text-align: right;
+  vertical-align: middle;
+  float: right;
+  margin-right: 15px;
+  cursor: pointer;
+  position: relative;
+
+}
