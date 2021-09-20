@@ -2,7 +2,6 @@ import { csrfFetch } from "./csrf";
 
 const pathUrl = window.location?.pathname.split('/');
 const storyId = pathUrl[pathUrl.length - 1];
-const StoryDeleteId = parseInt(storyId, 10);
 const storyEditId = pathUrl[pathUrl.length - 2];
 
 

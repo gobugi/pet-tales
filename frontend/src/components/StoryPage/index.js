@@ -8,6 +8,8 @@ import { getComments } from '../../store/comments';
 import StoryFormPage from '../StoryFormPage';
 import './StoryPage.css';
 
+import CommentsFromAStory from '../CommentsFromAStory';
+
 
 const StoryPage = () => {
   const dispatch = useDispatch();
@@ -96,6 +98,7 @@ const StoryPage = () => {
             </table>
           </tbody>
         </table>
+        <CommentsFromAStory/>
       </div>
     </div>
   )

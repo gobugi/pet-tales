@@ -1,7 +1,7 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
 const { check, validationResult } = require('express-validator');
-const { Story, User, Comments } = require('../../db/models');
+const { Story, User, Comment } = require('../../db/models');
 
 const router = express.Router();
 
@@ -61,55 +61,6 @@ router.delete('/:id', asyncHandler(async (req, res) => {
   await story.destroy();
   return res.json({})
 }))
-
-
-
-
-
-
-
-
-
-// // Get a Comment
-// router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
-//   const id = req.params.id;
-//   const comment = await Comment.findByPk(id);
-//   res.json(comment);
-// }));
-
-
-
-// // Create Comment
-// router.post('/', asyncHandler(async (req, res) => {
-//     const { userId, storyId, body } = req.body;
-//     const comment = await Comment.create({ userId, storyId, body });
-//     return res.json({ comment });
-//   }),
-// );
-
-// // Edit Comment
-// router.put('/:id', asyncHandler(async (req, res) => {
-//   const id = req.params.id;
-//   const { userId, storyId, body } = req.body;
-//   await Comment.update({ userId, storyId, body })
-//   const comment = await Comment.findByPk(id);
-//   return res.json(comment)
-// }));
-
-// //Delete Comment
-// router.delete('/:id', asyncHandler(async (req, res) => {
-//   const commentId = req.params.id;
-//   const comment = await Comment.findByPk(commentId);
-//   if (!comment) return res.status(404).json({});
-
-//   await Comment.destroy({ where: { id: comment.id } });
-//   const destroyed = comment.id;
-//   return res.json({ destroyed })
-// }))
-
-
-
-
 
 
 

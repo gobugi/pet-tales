@@ -34,6 +34,8 @@ const ProfilePage = () => {
     dispatch(restoreUser());
   }, [dispatch]);
 
+// console.log(storiesArr[0].id)
+
   return (
     <div className='profileDiv'>
       <div className="profileBanner" style={{backgroundImage: 'url(/images/profilebanner.jpg)', backgroundRepeat: 'no-repeat', backgroundSize: '100%'}}>

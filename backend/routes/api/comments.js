@@ -1,9 +1,18 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
 
-const { Comment } = require('../../db/models');
+const { Story, User, Comment } = require('../../db/models');
 
 const router = express.Router();
+
+
+// Get Comments
+router.get('/', asyncHandler(async (req, res) => {
+  const comments = await Comment.findAll();
+  res.json(comments);
+}));
+
+
 
 // Get a Comment
 router.get('/:id(\\d+)', asyncHandler(async (req, res) => {
@@ -24,7 +33,7 @@ router.post('/', asyncHandler(async (req, res) => {
 
 
 // Edit Comment
-router.put('/:id(\\d+)', asyncHandler(async (req, res) => {
+router.put('/:id', asyncHandler(async (req, res) => {
   const id = req.params.id;
   const { userId, storyId, body } = req.body;
 
