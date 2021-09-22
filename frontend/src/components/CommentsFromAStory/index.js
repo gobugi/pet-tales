@@ -91,7 +91,7 @@ const CommentsFromAStory = () => {
 
 
   async function handlePost(e) {
-    e.preventDefault();
+    // e.preventDefault();
 
     let createdComment
     createdComment = {
@@ -101,7 +101,9 @@ const CommentsFromAStory = () => {
     }
 
     await dispatch(postComment(createdComment))
+    history.push(`/stories/${urlStoryId}`);
   }
+
 
 
 
@@ -117,42 +119,24 @@ const CommentsFromAStory = () => {
           <i onClick={openMenu} className="fas fa-plus-circle fa-3x"></i>}
           {showMenu && (
             <div>
-              <form onSubmit={handlePost}>
-                <label>
-                  Comment
-                    <textarea
-                      value={body}
-                      onChange={updateBody}
-                      placeholder="Type your comment here."
-                      rows="7"
-                      cols="28"
-                      required
-                    />
-                </label>
-                <button type="submit">Submit</button>
-              </form>
-            </div>
-            // <div>
-            //   <div id="commentTextareaDiv">
-            //     <label>
-            //       Comment
-            //         <textarea
-            //           value={body}
-            //           onChange={updateBody}
-            //           placeholder="Type your comment here."
-            //           rows="7"
-            //           cols="28"
-            //           required
-            //         />
-            //       </label>
-            //     <a href={`/stories/${urlStoryId}`}>
-            //       <button type="submit" className='commentPostButton' onClick={() => {handlePost()}}>Post</button>
-            //     </a>
-            //     <a href={`/stories/${urlStoryId}`}>
-            //       <button>Cancel</button>
-            //     </a>
-            //   </div>
-            // </div>
+            <form onSubmit={handlePost}>
+              <label>
+                Comment
+                  <textarea
+                    value={body}
+                    onChange={updateBody}
+                    placeholder="Type your comment here."
+                    rows="7"
+                    cols="28"
+                    required
+                  />
+              </label>
+              <button type="submit">Submit</button>
+            </form>
+            <a href={`/stories/${urlStoryId}`} className='cancelButton'>
+              <button>Cancel</button>
+            </a>
+          </div>
           )}
 
         <table className="storyCommentsTable">
