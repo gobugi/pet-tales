@@ -4,7 +4,7 @@ import { Redirect, useLocation, useHistory, NavLink } from 'react-router-dom';
 import './CommentsFromAStory.css';
 
 import { getComments, deleteComment, postComment } from '../../store/comments';
-import { getStories } from '../../store/stories';
+import { getStories, getStory } from '../../store/stories';
 import { getUsers } from '../../store/users';
 import { restoreUser } from '../../store/session';
 
@@ -81,9 +81,11 @@ const CommentsFromAStory = () => {
 
   useEffect(() => {
     dispatch(getComments());
+    dispatch(getStory());
     dispatch(getStories());
-    dispatch(getUsers());
-    dispatch(restoreUser());
+    // dispatch(getUsers());
+    // dispatch(restoreUser());
+    // dispatch(postComment());
   }, [dispatch]);
 
 
@@ -115,50 +117,42 @@ const CommentsFromAStory = () => {
           <i onClick={openMenu} className="fas fa-plus-circle fa-3x"></i>}
           {showMenu && (
             <div>
-              {/* <div>
-                <label>
-                  userId
-                  <input
-                    type="number"
-                    value={loggedInId}
-                    onChange={updateUserId}
-                    required
-                    // placeholder="userId"
-                  />
-                </label>
-              </div>
-              <div>
-                <label>
-                  storyId
-                  <input
-                    type="number"
-                    value={storyIdNum}
-                    onChange={updateStoryId}
-                    required
-                    // placeholder="storyId"
-                  />
-                </label>
-              </div> */}
-              <div id="commentTextareaDiv">
+              <form onSubmit={handlePost}>
                 <label>
                   Comment
                     <textarea
                       value={body}
-                      onChange={(e) => setBody(e.target.value)}
+                      onChange={updateBody}
                       placeholder="Type your comment here."
                       rows="7"
                       cols="28"
                       required
                     />
-                  </label>
-                <a href={`/stories/${urlStoryId}`}>
-                  <button className='commentPostButton' onClick={() => {handlePost()}}>Post</button>
-                </a>
-                <a href={`/stories/${urlStoryId}`}>
-                  <button>Cancel</button>
-                </a>
-              </div>
+                </label>
+                <button type="submit">Submit</button>
+              </form>
             </div>
+            // <div>
+            //   <div id="commentTextareaDiv">
+            //     <label>
+            //       Comment
+            //         <textarea
+            //           value={body}
+            //           onChange={updateBody}
+            //           placeholder="Type your comment here."
+            //           rows="7"
+            //           cols="28"
+            //           required
+            //         />
+            //       </label>
+            //     <a href={`/stories/${urlStoryId}`}>
+            //       <button type="submit" className='commentPostButton' onClick={() => {handlePost()}}>Post</button>
+            //     </a>
+            //     <a href={`/stories/${urlStoryId}`}>
+            //       <button>Cancel</button>
+            //     </a>
+            //   </div>
+            // </div>
           )}
 
         <table className="storyCommentsTable">
