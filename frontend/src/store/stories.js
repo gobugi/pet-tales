@@ -18,12 +18,12 @@ const setStories = (stories) => ({
   stories,
 });
 
-// const loadStory = (story) => {
-//   return {
-//       type: LOAD_STORY,
-//       story,
-//   }
-// };
+const loadStory = (story) => {
+  return {
+      type: LOAD_STORY,
+      story,
+  }
+};
 
 const removeStory = (story) => {
   return {
@@ -69,14 +69,14 @@ export const editStory = (story, storyEditId) => async dispatch => {
 }
 
 
-// export const getStory = (story) => async dispatch => {
-//   const response = await fetch(`/api/stories/${storyId}`);
+export const getStory = (story) => async dispatch => {
+  const response = await fetch(`/api/stories/${storyId}`);
 
-//   if (response.ok) {
-//     const story = await response.json();
-//     dispatch(loadStory(story));
-//   }
-// };
+  if (response.ok) {
+    const story = await response.json();
+    dispatch(loadStory(story));
+  }
+};
 
 export const postStory = (story) => async dispatch => {
   const response = await csrfFetch('/api/stories/', {
@@ -126,13 +126,13 @@ const storiesReducer = (state = initialState, action) => {
       });
       return newState;
     }
-    // case LOAD_STORY: {
-    //   const newState = {
-    //     ...state,
-    //     [action.story.id]: action.story,
-    //   };
-    // return newState;
-    // }
+    case LOAD_STORY: {
+      const newState = {
+        ...state,
+        [action.story.id]: action.story,
+      };
+    return newState;
+    }
     default:
       return state;
   }
