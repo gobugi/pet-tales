@@ -55,7 +55,7 @@ function LoginFormPage() {
         </div>
         <button type="submit">Log In</button>
         <NavLink to="/login/demo">
-          <button type="reset">Demo</button>
+          <button type="button">Demo</button>
         </NavLink>
       </form>
     </div>

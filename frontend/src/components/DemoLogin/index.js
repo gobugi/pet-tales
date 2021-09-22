@@ -15,8 +15,8 @@ function DemoLogin() {
     <Redirect to={`/users/${sessionUser.id}`} />
   );
 
-  const handleSubmit = () => {
-    // e.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault();
     // setErrors([]);
     return dispatch(sessionActions.login({ credential: "demo@user.io", password: "password" }))
       // .catch(async (res) => {
