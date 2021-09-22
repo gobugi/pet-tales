@@ -132,10 +132,10 @@ const CommentsFromAStory = () => {
                   />
               </label>
               <button type="submit">Submit</button>
+              <a href={`/stories/${urlStoryId}`} className='cancelButton'>
+                <button type="button">Cancel</button>
+              </a>
             </form>
-            <a href={`/stories/${urlStoryId}`} className='cancelButton'>
-              <button>Cancel</button>
-            </a>
           </div>
           )}
 
