@@ -92,6 +92,7 @@
   margin: 35px 0;
   border-top: #2B5292;
   width: 490px;
+  border-bottom-width: 0;
   border-top-style: solid;
   border-top-width: 1px;
 }
@@ -107,6 +108,7 @@
   margin-left: 10px;
   font-style: italic;
   margin-bottom: 45px;
+  margin-top: 80px;
 }
 
 .commentFromDiv {
