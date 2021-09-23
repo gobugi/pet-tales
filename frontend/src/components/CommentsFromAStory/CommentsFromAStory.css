@@ -126,8 +126,12 @@ textarea {
   margin-left: 10px;
   background-color: #EFEFEF;
   font-family: 'Roboto Slab', serif;
-  font-weight: 400;
+  font-weight: 300;
   font-size: 15px;
+}
+
+textarea:focus {
+  outline: none !important;
 }
 
 button {
