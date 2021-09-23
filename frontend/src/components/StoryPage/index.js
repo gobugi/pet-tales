@@ -71,7 +71,7 @@ const StoryPage = () => {
         <div className="storyBannerDarkOverlay" />
       </div>
       <div className="bigStoryContainer">
-        <h2 className="bigStoryTitle">~ {currentUserId === +userId ? 'My' : `${author}'s` } story ~</h2>
+        <h2 className="bigStoryTitle">~ {currentUserId === +userId ? 'My' : <a id="bigStoryAnchor" href={`/users/${userId}`}>{`${author}'s`}</a>} story ~</h2>
         <table className="bigStoryTable">
           <tbody className="bigStoryTbody">
             <table className="smallStoryTable">
