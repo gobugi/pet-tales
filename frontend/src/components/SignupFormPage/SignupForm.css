@@ -48,6 +48,9 @@ textarea {
   flex: 0 0 300px;
   margin-left: 10px;
   background-color: #EFEFEF;
+  font-family: 'Roboto Slab', serif;
+  font-weight: 400;
+  font-size: 15px;
 }
 
 button {
