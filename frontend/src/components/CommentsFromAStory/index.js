@@ -77,8 +77,6 @@ const CommentsFromAStory = () => {
 
 
 
-
-
   useEffect(() => {
     dispatch(getComments());
     dispatch(getStory());
@@ -92,6 +90,7 @@ const CommentsFromAStory = () => {
 
   async function handlePost(e) {
     // e.preventDefault();
+    // e.stopPropagation();
 
     let createdComment
     createdComment = {
@@ -112,35 +111,36 @@ const CommentsFromAStory = () => {
     // history.push('/')
   }
 
+
   return (
     <div className='commentsDiv'>
       <div className="storyCommentsContainer">
         {(sessionUser) &&
-          <i onClick={openMenu} className="fas fa-plus-circle fa-3x"></i>}
-          {showMenu && (
-            <div>
-            <form onSubmit={handlePost}>
-              <label>
-                Comment
-                  <textarea
-                    value={body}
-                    onChange={updateBody}
-                    placeholder="Type your comment here."
-                    rows="7"
-                    cols="28"
-                    required
-                  />
-              </label>
-              <button type="submit">Submit</button>
-              <a href={`/stories/${urlStoryId}`} className='cancelButton'>
-                <button type="button">Cancel</button>
-              </a>
-            </form>
-          </div>
-          )}
-
+          <i onClick={openMenu} className="fas fa-plus-circle fa-3x">
+            {showMenu && (
+              <div className="commentFromDiv">
+                <form onSubmit={handlePost}>
+                  <label>
+                      <textarea
+                        value={body}
+                        onChange={updateBody}
+                        placeholder="Type your comment here."
+                        rows="7"
+                        cols="28"
+                        required
+                      />
+                  </label>
+                  <button type="submit">Submit</button>
+                  <a href={`/stories/${urlStoryId}`} className='cancelButton'>
+                    <button type="button">Cancel</button>
+                  </a>
+                </form>
+              </div>
+            )}
+          </i>}
         <table className="storyCommentsTable">
-          <tbody className="storyCommentsTbody">
+          <tbody id="storyCommentsTbody">
+            <div id="storyCommentsHeader">Comments</div>
             {allCommentsFromStory.map((comment) =>
             <table className="storyCommentTable">
               <tr className="storyCommentTr">
@@ -148,8 +148,8 @@ const CommentsFromAStory = () => {
                 <td className="storyCommentTd">
                     <table>
                     <tr><td className="storyCommentTitle"></td></tr>
-                    <tr><a className="storyCommentAuthor" href={`/users/${comment.userId}`}><td className="storyCommentAuthor">{`by ${(usersArr.find(user => (user?.id === comment?.userId )))?.username}`}</td></a></tr>
-                    <tr><td className="storyCommentBody">{comment.body}</td></tr>
+                    <tr><a id="storyCommentAuthor" href={`/users/${comment.userId}`}><td className="storyCommentAuthor">{`${(usersArr.find(user => (user?.id === comment?.userId )))?.username}`}</td></a></tr>
+                    <tr><td id="storyCommentBody">{`${comment.body}`}</td></tr>
                     {(sessionUser?.id === comment?.userId) &&
                     <NavLink to={`/comments/${comment?.id}/edit`} className='commentEditButton'>
                       <button>Edit</button>

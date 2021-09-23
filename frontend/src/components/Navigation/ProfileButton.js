@@ -34,6 +34,7 @@ function ProfileButton({ user }) {
   }
 
   const logoutAndRedirect = (e) => {
+    e.preventDefault();
     logout(e);
     redirectHome(e);
   }
