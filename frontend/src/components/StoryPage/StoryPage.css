@@ -100,6 +100,15 @@
   margin-bottom: 50px;
 }
 
+#bigStoryAnchor:link {
+  color: #2B5292;
+  text-decoration: none;
+}
+
+#bigStoryAnchor:visited {
+  color: #2B5292;
+}
+
 .smallStoryTitle {
   float: left;
   font-family: 'Playfair Display', serif;
