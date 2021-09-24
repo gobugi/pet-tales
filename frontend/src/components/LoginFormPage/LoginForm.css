@@ -39,6 +39,7 @@ form {
   text-align:right;
   width: 350px;
   margin-left: 40%;
+  cursor: default;
 }
 
 /* #demoButton {

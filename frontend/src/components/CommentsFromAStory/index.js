@@ -118,7 +118,7 @@ const CommentsFromAStory = () => {
         {(sessionUser) &&
           <i onClick={openMenu} className="fas fa-plus-circle fa-3x">
             {showMenu && (
-              <div className="commentFromDiv">
+              <div className="commentFormDiv">
                 <form onSubmit={handlePost}>
                   <label>
                       <textarea
