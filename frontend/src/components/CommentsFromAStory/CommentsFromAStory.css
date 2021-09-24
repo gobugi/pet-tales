@@ -10,6 +10,7 @@
   left: 0px;
   right: 0px;
   /* min-width: 1346px; */  z-index: 900;
+  cursor: default;
 }
 
 
@@ -111,13 +112,14 @@
   margin-top: 80px;
 }
 
-.commentFromDiv {
+.commentFormDiv {
   position: relative;
   text-align:right;
   left: 0px;
   right: 0px;
   margin-right: 594px;
   margin-top: -80px;
+  cursor: default;
 }
 
 textarea {
