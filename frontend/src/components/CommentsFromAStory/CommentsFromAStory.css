@@ -152,3 +152,7 @@ button {
   margin-left: 5px;
   margin-right: 5px;
 }
+
+.fa-plus-circle:hover {
+  cursor: pointer;
+}
