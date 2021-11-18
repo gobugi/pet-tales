@@ -71,7 +71,7 @@ const StoryPage = () => {
         <div className="storyBannerDarkOverlay" />
       </div>
       <div className="bigStoryContainer">
-        <h2 className="bigStoryTitle">~ {currentUserId === +userId ? 'My' : <a id="bigStoryAnchor" href={`/users/${userId}`}>{`${author}'s`}</a>} story ~</h2>
+        <h2 className="bigStoryTitle">~ {currentUserId === +userId ? 'My' : <NavLink id="bigStoryAnchor" to={`/users/${userId}`}>{`${author}'s`}</NavLink>} story ~</h2>
         <table className="bigStoryTable">
           <tbody className="bigStoryTbody">
             <table className="smallStoryTable">
@@ -84,14 +84,14 @@ const StoryPage = () => {
                     <tr><td className="smallStoryBody">{`${currentStory?.body}`}</td></tr>
                   </table>
                     {(currentUser?.id === currentUserId) &&
-                      <a href={`/stories/${storyId}/edit`}>
+                      <NavLink to={`/stories/${storyId}/edit`}>
                         <button className="storyPageEditButton">Edit</button>
-                      </a>
+                      </NavLink>
                     }
                     {(currentUser?.id === currentUserId) &&
-                      <a href={`/users/${sessionUser?.id}`}>
+
                         <button className='storyPageDeleteButton' onClick={() => {handleDelete(currentStory?.id)}}>Delete</button>
-                      </a>
+
                     }
                 </td>
               </tr>

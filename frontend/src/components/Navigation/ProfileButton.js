@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
-import { Redirect } from 'react-router-dom';
+// import { Redirect } from 'react-router-dom';
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -46,7 +47,9 @@ function ProfileButton({ user }) {
       {showMenu && (
         <div>
           <ul className="profile-dropdown" style={{listStyleType: 'none'}}>
-            <li key={user.id}><a href={`/users/${user.id}`} style={{textDecoration: 'none'}}>{user.username}</a></li>
+            <li key={user.id}>
+              <NavLink style={{textDecoration: 'none'}} exact to={`/users/${user.id}`}>{user.username}</NavLink>
+            </li>
             <li key={user.email}>{user.email}</li>
             <li key={user.username}>
               <button key={`${user.id}logoutButton`} className="logoutButton" onClick={logoutAndRedirect}>

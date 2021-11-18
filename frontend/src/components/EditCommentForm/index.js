@@ -116,7 +116,7 @@ const EditCommentForm = () => {
             />
           </label>
         </div>
-        <button type="submit">Edit</button>
+        <button type="submit">Save</button>
         <NavLink to={`/stories/${currentStoryId}`} className='cancelButton'>
           <button>Cancel</button>
         </NavLink>

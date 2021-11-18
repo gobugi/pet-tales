@@ -103,7 +103,7 @@ const EditStoryForm = () => {
             />
           </label>
         </div>
-        <button type="submit">Edit</button>
+        <button type="submit">Save</button>
         <NavLink to={`/stories/${storyId}`} className='cancelButton'>
           <button>Cancel</button>
         </NavLink>

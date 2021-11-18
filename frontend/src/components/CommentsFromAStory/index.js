@@ -53,6 +53,7 @@ const CommentsFromAStory = () => {
   const updateUserId = (e) => setUserId(e.target.value);
   const updateStoryId = (e) => setStoryId(e.target.value);
   const updateBody = (e) => setBody(e.target.value);
+  const [inputValue, setInputValue] = useState("");
 
 
   const [showMenu, setShowMenu] = useState(false);
@@ -96,11 +97,11 @@ const CommentsFromAStory = () => {
     createdComment = {
       userId: loggedInId,
       storyId: storyIdNum,
-      body,
+      body: inputValue
     }
 
     await dispatch(postComment(createdComment))
-    history.push(`/stories/${urlStoryId}`);
+    // history.push(`/stories/${urlStoryId}`);
   }
 
 
@@ -120,20 +121,20 @@ const CommentsFromAStory = () => {
             {showMenu && (
               <div className="commentFormDiv">
                 <form onSubmit={handlePost}>
-                  <label>
+                  <div>
                       <textarea
-                        value={body}
-                        onChange={updateBody}
+                        value={inputValue}
+                        onChange={(e) => setInputValue(e.target.value)}
                         placeholder="Type your comment here."
                         rows="7"
                         cols="28"
                         required
                       />
-                  </label>
-                  <button type="submit">Submit</button>
+                  </div>
                   <a href={`/stories/${urlStoryId}`} className='cancelButton'>
                     <button type="button">Cancel</button>
                   </a>
+                  <button>Submit</button>
                 </form>
               </div>
             )}

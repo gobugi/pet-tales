@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector  } from 'react-redux';
-import { Redirect, useLocation } from 'react-router-dom';
+import { Redirect, useLocation, NavLink } from 'react-router-dom';
 import './ProfilePage.css';
 
 
@@ -51,20 +51,32 @@ const ProfilePage = () => {
       <div className="profileStoriesContainer">
         <h2 className="profileStoriesTitle">~ {currentUserId === +userId ? 'My' : `${author}'s` } stories ~</h2>
         {(currentUserId === +userId) &&
-        <a href='/stories/new'>
+        <NavLink to='/stories/new'>
           <i className="fas fa-plus-circle fa-3x"></i>
-        </a>
+        </NavLink>
         }
         <table className="profileStoriesTable">
           <tbody className="profileStoriesTbody">
             {myStories.map((story) =>
             <table className="profileStoryTable">
               <tr className="profileStoryTr">
-                <td className="profileStoryImg"><a className="storyImages" href={`/stories/${story.id}`}><img className="storyImages" src={`${story.imageUrl}`} alt="petImage" /></a></td>
+                <td className="profileStoryImg">
+                  <NavLink className="storyImages" to={`/stories/${story.id}`}>
+                    <img className="storyImages" src={`${story.imageUrl}`} alt="petImage" />
+                  </NavLink>
+                </td>
                 <td className="profileStoryTd">
                     <table>
-                    <tr><a className="profileStoryTitle" href={`/stories/${story.id}`}><td className="profileStoryTitle">{story.title}</td></a></tr>
-                    <tr><a className="profileStoryAuthor" href={`/users/${story.authorId}`}><td className="profileStoryAuthor">{`by ${author}`}</td></a></tr>
+                    <tr>
+                      <NavLink className="profileStoryTitle" to={`/stories/${story.id}`}>
+                        <td className="profileStoryTitle">{story.title}</td>
+                      </NavLink>
+                    </tr>
+                    <tr>
+                      <NavLink className="profileStoryAuthor" to={`/users/${story.authorId}`}>
+                        <td className="profileStoryAuthor">{`by ${author}`}</td>
+                      </NavLink>
+                    </tr>
                     <tr><td className="profileStoryBody">{story.body}</td></tr>
                     </table>
                 </td>

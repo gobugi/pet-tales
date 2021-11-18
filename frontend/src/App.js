@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { useLocation } from "react-router";
 import { Route, Switch } from "react-router-dom";
 import LoginFormPage from "./components/LoginFormPage";
 import SignupFormPage from "./components/SignupFormPage";
@@ -13,6 +14,19 @@ import EditStoryForm from './components/EditStoryForm';
 import EditCommentForm from './components/EditCommentForm';
 import DemoLogin from './components/DemoLogin';
 
+
+
+const ScrollToTop = (props) => {
+  const location = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
+
+  return <>{props.children}</>
+};
+
+
+
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -24,35 +38,37 @@ function App() {
     <>
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
-        <Switch>
-          <Route exact path='/'>
-            <HomePage />
-          </Route>
-          <Route exact path="/users/:id">
-            <ProfilePage />
-          </Route>
-          <Route exact path="/stories/new">
-            <StoryFormPage />
-          </Route>
-          <Route exact path="/stories/:id/edit">
-            <EditStoryForm />
-          </Route>
-          <Route exact path="/comments/:id/edit">
-            <EditCommentForm />
-          </Route>
-          <Route exact path="/stories/:id">
-            <StoryPage />
-          </Route>
-          <Route exact path="/login/demo">
-            <DemoLogin />
-          </Route>
-          <Route path="/login">
-            <LoginFormPage />
-          </Route>
-          <Route path="/signup">
-            <SignupFormPage />
-          </Route>
-        </Switch>
+        <ScrollToTop>
+          <Switch>
+            <Route exact path='/'>
+              <HomePage />
+            </Route>
+            <Route exact path="/users/:id">
+              <ProfilePage />
+            </Route>
+            <Route exact path="/stories/new">
+              <StoryFormPage />
+            </Route>
+            <Route exact path="/stories/:id/edit">
+              <EditStoryForm />
+            </Route>
+            <Route exact path="/comments/:id/edit">
+              <EditCommentForm />
+            </Route>
+            <Route exact path="/stories/:id">
+              <StoryPage />
+            </Route>
+            <Route exact path="/login/demo">
+              <DemoLogin />
+            </Route>
+            <Route path="/login">
+              <LoginFormPage />
+            </Route>
+            <Route path="/signup">
+              <SignupFormPage />
+            </Route>
+          </Switch>
+        </ScrollToTop>
       )}
     </>
   );
