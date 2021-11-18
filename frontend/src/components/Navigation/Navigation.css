@@ -70,6 +70,10 @@ body { margin: 0; padding: 0; background-color: #EFEFEF; max-width: 100%; overfl
   margin-right: 265px;
 }
 
+.fas.fa-user-circle.fa-3x:hover {
+  cursor: pointer;
+}
+
 .profile-dropdown {
   float: right;
   position: relative;
