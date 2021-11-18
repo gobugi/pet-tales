@@ -24,9 +24,9 @@ function Navigation({ isLoaded }){
 
   return (
     <div className="navContainer">
-      <a href="/">
+      <NavLink to="/">
         <img className="logo" src="/images/logo.png" alt="Logo" />
-      </a>
+      </NavLink>
       <div className="divHome">
         <NavLink className="navHome" exact to="/">Home</NavLink>
       </div>
