@@ -149,7 +149,11 @@ const CommentsFromAStory = () => {
                 <td className="storyCommentTd">
                     <table>
                     <tr><td className="storyCommentTitle"></td></tr>
-                    <tr><a id="storyCommentAuthor" href={`/users/${comment.userId}`}><td className="storyCommentAuthor">{`${(usersArr.find(user => (user?.id === comment?.userId )))?.username}`}</td></a></tr>
+                    <tr>
+                      <NavLink id="storyCommentAuthor" to={`/users/${comment.userId}`}>
+                        <td className="storyCommentAuthor">{`${(usersArr.find(user => (user?.id === comment?.userId )))?.username}`}</td>
+                      </NavLink>
+                    </tr>
                     <tr><td id="storyCommentBody">{`${comment.body}`}</td></tr>
                     {(sessionUser?.id === comment?.userId) &&
                     <NavLink to={`/comments/${comment?.id}/edit`} className='commentEditButton'>
