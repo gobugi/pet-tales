@@ -3,7 +3,7 @@ import { useDispatch, useSelector  } from 'react-redux';
 import { postStory } from '../../store/stories';
 import { getUsers } from '../../store/users';
 import { restoreUser } from '../../store/session';
-import { useHistory } from 'react-router-dom';
+import { useHistory, NavLink } from 'react-router-dom';
 
 import './StoryFormPage.css';
 
@@ -103,6 +103,9 @@ const StoryFormPage = () => {
             />
           </label>
         </div> */}
+        <NavLink to={`/users/${sessionUser.id}`}>
+          <button type="button">Cancel</button>
+        </NavLink>
         <button type="submit">Submit</button>
       </form>
     </div>

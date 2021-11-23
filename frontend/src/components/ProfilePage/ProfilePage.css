@@ -140,11 +140,30 @@
 
 
 .fas.fa-plus-circle.fa-3x {
-  color: #2B5292;
+  color: #926B2B;
   margin-top: 40px;
-  margin-bottom: 50px;
+  margin-bottom: 70px;
+}
+
+.fas.fa-plus-circle.fa-2x {
+  color: #926B2B;
+  margin-top: 40px;
+  margin-bottom: 70px;
+  margin-right: 180px;
 }
 
 /* .fas.fa-plus-circle.fa-3x:active {
   visibility: hidden;
 } */
+
+#newStory {
+  font-weight: 100;
+  font-size: 25px;
+  position: absolute;
+  margin-top: 9px;
+  margin-left: 15px;
+}
+
+#newStoryNav {
+  margin-right: 120px !important;
+}

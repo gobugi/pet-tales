@@ -51,8 +51,10 @@ const ProfilePage = () => {
       <div className="profileStoriesContainer">
         <h2 className="profileStoriesTitle">~ {currentUserId === +userId ? 'My' : `${author}'s` } stories ~</h2>
         {(currentUserId === +userId) &&
-        <NavLink to='/stories/new'>
-          <i className="fas fa-plus-circle fa-3x"></i>
+        <NavLink id="newStoryNav" to='/stories/new'>
+          <i className="fas fa-plus-circle fa-3x">
+            <span id="newStory"> New story</span>
+          </i>
         </NavLink>
         }
         <table className="profileStoriesTable">

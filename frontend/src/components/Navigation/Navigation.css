@@ -67,7 +67,7 @@ body { margin: 0; padding: 0; background-color: #EFEFEF; max-width: 100%; overfl
   float: right;
   position: relative;
   top: 20px;
-  margin-right: 265px;
+  margin-right: 165px;
 }
 
 .fas.fa-user-circle.fa-3x:hover {
@@ -77,8 +77,8 @@ body { margin: 0; padding: 0; background-color: #EFEFEF; max-width: 100%; overfl
 .profile-dropdown {
   float: right;
   position: relative;
-  top: 0px;
-  right: 0px;
+  top: -9px;
+  right: 20px;
 }
 
 ul.profile-dropdown {

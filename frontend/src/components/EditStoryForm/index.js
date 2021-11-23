@@ -97,16 +97,16 @@ const EditStoryForm = () => {
               defaultValue={currentBody}
               onChange={updateBody}
               // placeholder="Type your story here."
-              rows="7"
+              rows="56"
               cols="28"
               required
             />
           </label>
         </div>
-        <button type="submit">Save</button>
         <NavLink to={`/stories/${storyId}`} className='cancelButton'>
           <button>Cancel</button>
         </NavLink>
+        <button type="submit">Save</button>
       </form>
     </div>
   );

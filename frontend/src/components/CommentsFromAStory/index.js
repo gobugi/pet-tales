@@ -59,21 +59,22 @@ const CommentsFromAStory = () => {
   const [showMenu, setShowMenu] = useState(false);
 
   const openMenu = () => {
-    if (showMenu) return;
+    // if (showMenu) return;
     setShowMenu(true);
+    // document.getElementsByClassName("fa-2x")?.style.display = "none";
   };
 
-  useEffect(() => {
-    if (!showMenu) return;
+  // useEffect(() => {
+  //   if (!showMenu) return;
 
-    const closeMenu = () => {
-      setShowMenu(true);
-    };
+  //   const closeMenu = () => {
+  //     setShowMenu(true);
+  //   };
 
-    document.addEventListener('click', closeMenu);
+  //   document.addEventListener('click', closeMenu);
 
-    return () => document.removeEventListener("click", closeMenu);
-  }, [showMenu]);
+  //   return () => document.removeEventListener("click", closeMenu);
+  // }, [showMenu]);
 
 
 
@@ -117,7 +118,9 @@ const CommentsFromAStory = () => {
     <div className='commentsDiv'>
       <div className="storyCommentsContainer">
         {(sessionUser) &&
-          <i onClick={openMenu} className="fas fa-plus-circle fa-3x">
+        <div>
+          <i onClick={openMenu} className="fas fa-plus-circle fa-2x" style={{display:"block"}}><span id="newComment"> New comment</span></i>
+
             {showMenu && (
               <div className="commentFormDiv">
                 <form onSubmit={handlePost}>
@@ -138,7 +141,8 @@ const CommentsFromAStory = () => {
                 </form>
               </div>
             )}
-          </i>}
+
+        </div>}
         <table className="storyCommentsTable">
           <tbody id="storyCommentsTbody">
             <div id="storyCommentsHeader">Comments</div>

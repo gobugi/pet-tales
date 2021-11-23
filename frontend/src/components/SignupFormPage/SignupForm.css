@@ -12,7 +12,7 @@
   background: linear-gradient(to bottom, transparent, #2B5292),
   url("https://images.unsplash.com/photo-1513360371669-4adf3dd7dff8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1700&q=80");
   background-repeat: no-repeat;
-  background-size: 100%;
+  background-size: cover;
   color: #EFEFEF;
   font-family: 'Playfair Display', serif;
   font-weight: 550;
@@ -42,7 +42,7 @@ input {
   margin-left: 10px;
   background-color: #EFEFEF;
   font-family: 'Roboto Slab', serif;
-  font-weight: 400;
+  font-weight: 300;
   font-size: 15px;
 }
 

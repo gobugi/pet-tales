@@ -156,3 +156,11 @@ button {
 .fa-plus-circle:hover {
   cursor: pointer;
 }
+
+#newComment {
+  font-weight: 100;
+  font-size: 25px;
+  position: absolute;
+  margin-top: 2px;
+  margin-left: 15px;
+}
