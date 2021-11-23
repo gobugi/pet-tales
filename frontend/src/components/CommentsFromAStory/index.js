@@ -88,6 +88,7 @@ const CommentsFromAStory = () => {
   }, [dispatch]);
 
 
+  // posting new comment
   async function handlePost(e) {
     // e.preventDefault();
     // e.stopPropagation();
