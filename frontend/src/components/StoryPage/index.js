@@ -115,7 +115,7 @@ const StoryPage = () => {
       "storyId": id
     }
 
-    const response = await fetch(`/api/likes/`, {
+    const response = await csrfFetch(`/api/likes/`, {
       method: 'POST',
       body: JSON.stringify(newLike),
       headers: {
@@ -188,7 +188,7 @@ const StoryPage = () => {
 
   const remLike = async (e) => {
     e.preventDefault();
-    await fetch(`/api/likes/${currentLike?.id}`, {
+    await csrfFetch(`/api/likes/${currentLike?.id}`, {
         method: 'DELETE'
     })
 
