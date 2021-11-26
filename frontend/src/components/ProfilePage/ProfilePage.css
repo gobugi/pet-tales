@@ -145,8 +145,13 @@
   margin-bottom: 70px;
 }
 
+.storyCommentsDiv {
+  text-align: center !important;
+}
+
 .fas.fa-plus-circle.fa-2x {
   color: #926B2B;
+  /* width: 200px; */
   margin-top: 40px;
   margin-bottom: 70px;
   margin-right: 15vw;
@@ -166,4 +171,8 @@
 
 #newStoryNav {
   margin-right: 120px !important;
+}
+
+#newStoryNav:hover {
+  cursor: pointer;
 }

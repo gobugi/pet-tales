@@ -118,8 +118,9 @@ const CommentsFromAStory = () => {
     <div className='commentsDiv'>
       <div className="storyCommentsContainer">
         {(sessionUser) &&
-        <div>
+        <div className="storyCommentsDiv">
           <i onClick={openMenu} className="fas fa-plus-circle fa-2x" style={{display:"block"}}><span id="newComment"> New comment</span></i>
+          
 
             {showMenu && (
               <div className="commentFormDiv">

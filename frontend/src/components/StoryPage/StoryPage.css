@@ -100,6 +100,10 @@
   margin-bottom: 50px;
 }
 
+.bigStoryTitle:hover {
+  cursor: default;
+}
+
 #bigStoryAnchor:link {
   color: #2B5292;
   text-decoration: none;
@@ -117,6 +121,10 @@
   color: #2B5292;
   margin-left: 15px;
   margin-bottom: 5px;
+}
+
+.smallStoryTitle:hover {
+  cursor: default;
 }
 
 .smallStoryAuthor {
@@ -139,6 +147,10 @@
   font-family: 'Roboto Slab', serif;
   font-weight: 300;
   margin-left: 15px;
+}
+
+.smallStoryBody:hover {
+  cursor: default;
 }
 
 .smallStoryTable {
@@ -181,4 +193,43 @@
   cursor: pointer;
   position: relative;
 
+}
+
+.likesContainer {
+  display: flex;
+}
+
+.fa-heart.far {
+  font-size: 18px;
+  margin-left: 30px;
+  color: rgb(225, 69, 83);
+  /* width: 18px; */
+}
+
+.fa-heart.fas {
+  font-size: 18px;
+  margin-left: 30px;
+  color: rgb(225, 69, 83);
+  width: 18px;
+}
+
+.likesContainer>span {
+  color: black;
+  font-size: 18px;
+}
+
+.likesContainer>span:hover {
+  cursor: default;
+}
+
+.fa-heart:hover {
+  cursor: pointer;
+}
+
+#loggedOutFullHeart:hover {
+  cursor: default !important;
+}
+
+#loggedOutEmptyHeart:hover {
+  cursor: default !important;
 }
