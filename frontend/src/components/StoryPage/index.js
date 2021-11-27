@@ -51,6 +51,107 @@ const StoryPage = () => {
 
   const [allLikes, setAllLikes] = useState([]);
   const [currentLike, setCurrentLike] = useState([]);
+  const [allFollows, setAllFollows] = useState([]);
+  const [currentFollow, setCurrentFollow] = useState([]);
+
+
+
+  useEffect(() => {
+
+    async function all_follows() {
+
+			const res = await fetch(`/api/stories/${storyId}`);
+			const resData = await res.json();
+
+			const response = await fetch(`/api/follows/`);
+			const responseData = await response.json();
+
+      setAllFollows(responseData)
+
+      const currFollowArr = [];
+
+      responseData?.forEach(follow => {
+        (resData?.authorId === follow?.userId) && (sessionUser?.id === follow?.followerId) && currFollowArr?.push(follow);
+      })
+      setCurrentFollow(currFollowArr[0]);
+
+      if (!sessionUser) {
+        document.getElementById("followBtn")?.setAttribute("style","display:none;");
+        document.getElementById("unfollowBtn")?.setAttribute("style","display:none;");
+      }
+
+      if (sessionUser && currFollowArr?.length) {
+        document.getElementById("followBtn")?.setAttribute("style","display:none;");
+        document.getElementById("unfollowBtn")?.setAttribute("style","display:block;");
+      }
+
+      if (sessionUser && !currFollowArr?.length) {
+        document.getElementById("followBtn")?.setAttribute("style","display:block;");
+        document.getElementById("unfollowBtn")?.setAttribute("style","display:none;");
+      }
+
+		}
+
+    all_follows();
+	}, []);
+
+
+
+//////////////// add follow ///////////////////
+  const addFollow = async (e) => {
+    e.preventDefault()
+
+    const newFollow = {
+      userId,
+      "followerId": currentUserId
+    }
+
+    const response = await csrfFetch(`/api/follows/`, {
+      method: 'POST',
+      body: JSON.stringify(newFollow),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    });
+
+
+    if (response.ok) {
+
+      const data = await response.json();
+      setCurrentFollow(data)
+
+      const res = await fetch(`/api/follows/`);
+			const resData = await res.json();
+
+      setAllFollows(resData)
+
+      document.getElementById("followBtn")?.setAttribute("style","display:none;");
+      document.getElementById("unfollowBtn")?.setAttribute("style","display:block;");
+
+    }
+
+  }
+
+
+//////////////// remove follow ///////////////////
+const remFollow = async (e) => {
+  e.preventDefault();
+
+  const response = await csrfFetch(`/api/follows/${currentFollow?.id}`, {
+    method: 'DELETE'
+  });
+
+
+  if (response.ok) {
+    document.getElementById("followBtn")?.setAttribute("style","display:block;");
+    document.getElementById("unfollowBtn")?.setAttribute("style","display:none;");
+  }
+
+  setCurrentFollow([]);
+
+};
+
+
 
 //////////////// display total likes and relevant heart ///////////////////
   useEffect(() => {
@@ -105,8 +206,9 @@ const StoryPage = () => {
     all_likes();
 	}, []);
 
-  /////////// add heart ////////////
 
+
+  /////////// add heart ////////////
   const addLike = async (e) => {
     e.preventDefault()
 
@@ -185,7 +287,7 @@ const StoryPage = () => {
 
   }
 
-
+//////////////// remove heart //////////////////////
   const remLike = async (e) => {
     e.preventDefault();
     await csrfFetch(`/api/likes/${currentLike?.id}`, {
@@ -277,6 +379,8 @@ const StoryPage = () => {
       </div>
       <div className="bigStoryContainer">
         <h2 className="bigStoryTitle">~ {currentUserId === +userId ? 'My' : <NavLink id="bigStoryAnchor" to={`/users/${userId}`}>{`${author}'s`}</NavLink>} story ~</h2>
+        <button id="followBtn" onClick={addFollow} style={{display:"none"}}>Follow</button>
+        <button id="unfollowBtn" onClick={remFollow} style={{display:"none"}}>Unfollow</button>
         <table className="bigStoryTable">
           <tbody className="bigStoryTbody">
             <table className="smallStoryTable">
