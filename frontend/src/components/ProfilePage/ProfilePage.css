@@ -105,8 +105,8 @@
   font-size: 47px;
   font-style: italic;
   color: #2B5292;
-  margin-top: 0px;
-  margin-bottom: 50px;
+  margin-top: -80px;
+  margin-bottom: 40px;
 }
 
 .profileStoriesTitle:hover {
@@ -161,7 +161,15 @@
 }
 
 .storyCommentsDiv {
-  text-align: center !important;
+  margin-left: 5%;
+}
+
+.storyCommentsDiv>i {
+  margin-left: 6%;
+}
+
+.storyCommentsDiv>i>span {
+  color: #926b2bd8;
 }
 
 .fas.fa-plus-circle.fa-2x {
@@ -188,6 +196,21 @@
   margin-right: 120px !important;
 }
 
+#newStoryNav>i>span {
+  color: #926b2bd8;
+}
+
 #newStoryNav:hover {
   cursor: pointer;
+}
+
+#followDivContainer {
+  display: flex;
+  text-align: center;
+  justify-content: space-evenly;
+  margin-top: 10px;
+}
+
+#followDivContainer:hover {
+  cursor: default;
 }
