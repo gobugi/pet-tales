@@ -102,6 +102,10 @@
   margin-bottom: 50px;
 }
 
+.profileStoriesTitle:hover {
+  cursor: default;
+}
+
 .profileStoryTitle {
   float: left;
   font-family: 'Playfair Display', serif;
@@ -132,6 +136,10 @@
   font-family: 'Roboto Slab', serif;
   font-weight: 300;
   margin-left: 15px;
+}
+
+.profileStoryBody:hover {
+  cursor: default;
 }
 
 .profileStoryTable {

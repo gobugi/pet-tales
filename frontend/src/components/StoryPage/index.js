@@ -395,9 +395,9 @@ const remFollow = async (e) => {
                   <table>
                     <tr><td className="smallStoryTitle">{`${currentStory?.title}`}</td></tr>
                     <tr>
-                      <a className="smallStoryAuthor" href={`/users/${userId}`}>
+                      <NavLink className="smallStoryAuthor" to={`/users/${userId}`}>
                         <td className="smallStoryAuthor">{`by ${currentUser?.username}`}</td>
-                      </a>
+                      </NavLink>
                     </tr>
                     <tr><td className="smallStoryBody">{`${currentStory?.body}`}</td></tr>
                     <br />

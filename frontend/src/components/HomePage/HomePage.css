@@ -50,6 +50,14 @@
   margin-left: 125px;
 }
 
+#line1:hover {
+cursor: default;
+}
+
+#line2:hover {
+  cursor: default;
+  }
+
 .homeStoriesContainer {
   margin-left: 0;
   margin-right: 0;
@@ -92,6 +100,10 @@
   margin: 130px 0;
 }
 
+.homeStoriesTitle:hover {
+  cursor: default;
+}
+
 .homeStoryTitle {
   float: left;
   font-family: 'Playfair Display', serif;
@@ -122,6 +134,10 @@
   font-family: 'Roboto Slab', serif;
   font-weight: 300;
   margin-left: 15px;
+}
+
+.homeStoryBody:hover {
+  cursor: default;
 }
 
 .homeStoryTable {
