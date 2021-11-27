@@ -28,7 +28,7 @@ User can see all the stories created by a specific user.  If it is the logged in
 * PostgreSQL
 * Sequelize
 * HTML
-* Vanilla
+* CSS
 * React
 
 ## Future Implementations
