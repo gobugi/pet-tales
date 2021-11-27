@@ -33,7 +33,7 @@ const HomePage = () => {
 
   return (
     <>
-      <div className="container" style={{backgroundImage: 'url(/images/heroimage.png)', backgroundRepeat: 'no-repeat', backgroundSize: '100%'}}>
+      <div className="container" style={{backgroundImage: 'url(https://raw.githubusercontent.com/gobugi/pet-tales/main/frontend/public/images/heroimage.png)', backgroundRepeat: 'no-repeat', backgroundSize: '100%'}}>
         <div className="darkOverlay">
             <div id='line1'>
               a place for pet-lovers...

@@ -38,7 +38,7 @@ const ProfilePage = () => {
 
   return (
     <div className='profileDiv'>
-      <div className="profileBanner" style={{backgroundImage: 'url(/images/profilebanner.jpg)', backgroundRepeat: 'no-repeat', backgroundSize: '100%'}}>
+      <div className="profileBanner" style={{backgroundImage: 'url(https://raw.githubusercontent.com/gobugi/pet-tales/main/frontend/public/images/profilebanner.jpg)', backgroundRepeat: 'no-repeat', backgroundSize: '100%'}}>
         <div className="bannerDarkOverlay">
             <div id={`welcome`}>
               {(currentUserId === +userId) && `Welcome`}
