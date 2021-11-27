@@ -58,7 +58,7 @@ const EditStoryForm = () => {
 
     if (editedStory) {
       dispatch(editStory(editedStory, +storyId))
-      history.push(`/users/${sessionUser?.id}`);
+      history.push(`/stories/${storyId}`);
     }
   };
 

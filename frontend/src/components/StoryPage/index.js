@@ -364,6 +364,7 @@ const remFollow = async (e) => {
 
   async function handleDelete(storyId) {
     await dispatch(deleteStory(storyId))
+    history.push(`/users/${sessionUser?.id}`);
     // history.push('/')
   }
 
@@ -379,8 +380,12 @@ const remFollow = async (e) => {
       </div>
       <div className="bigStoryContainer">
         <h2 className="bigStoryTitle">~ {currentUserId === +userId ? 'My' : <NavLink id="bigStoryAnchor" to={`/users/${userId}`}>{`${author}'s`}</NavLink>} story ~</h2>
-        <button id="followBtn" onClick={addFollow} style={{display:"none"}}>Follow</button>
-        <button id="unfollowBtn" onClick={remFollow} style={{display:"none"}}>Unfollow</button>
+        {currentUserId !== +userId &&
+          <button id="followBtn" onClick={addFollow} style={{display:"none"}}>Follow</button>
+        }
+        {currentUserId !== +userId &&
+          <button id="unfollowBtn" onClick={remFollow} style={{display:"none"}}>Unfollow</button>
+        }
         <table className="bigStoryTable">
           <tbody className="bigStoryTbody">
             <table className="smallStoryTable">
@@ -411,7 +416,7 @@ const remFollow = async (e) => {
                     }
                     {(currentUser?.id === currentUserId) &&
 
-                        <button className='storyPageDeleteButton' onClick={() => {handleDelete(currentStory?.id)}}>Delete</button>
+                      <button className='storyPageDeleteButton' onClick={() => {handleDelete(currentStory?.id)}}>Delete</button>
 
                     }
                 </td>

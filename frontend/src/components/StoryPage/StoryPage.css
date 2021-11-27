@@ -3,11 +3,12 @@
   margin-right: 0;
   top: 0;
   text-align:left;
-  position: absolute;
+  position: relative;
   left: 0px;
   right: 0px;
   min-width: 1346px;
   z-index: 900;
+  text-align: center;
 }
 
 .storyBanner {
@@ -66,7 +67,7 @@
 .bigStoryContainer {
   margin-left: 0;
   margin-right: 0;
-  text-align:left;
+  text-align:center;
   position: relative;
   top: 134px;
   height: 600px;
@@ -232,4 +233,16 @@
 
 #loggedOutEmptyHeart:hover {
   cursor: default !important;
+}
+
+#followBtn {
+  top: -20px;
+  position: relative;
+  left: 48%;
+}
+
+#unfollowBtn {
+  top: -20px;
+  position: relative;
+  left: 47.6%;
 }

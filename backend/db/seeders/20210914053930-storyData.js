@@ -171,12 +171,18 @@ module.exports = {
     ], {});
   },
 
-  down: async (queryInterface, Sequelize) => {
-    /**
-     * Add commands to revert seed here.
-     *
-     * Example:
-     */
-    await queryInterface.bulkDelete('Stories', null, {});
+  // down: async (queryInterface, Sequelize) => {
+  //   /**
+  //    * Add commands to revert seed here.
+  //    *
+  //    * Example:
+  //    */
+  //   await queryInterface.bulkDelete('Stories', null, {});
+  // }
+
+  down: (queryInterface, Sequelize) => {
+    const Op = Sequelize.Op;
+    return queryInterface.bulkDelete('Stories', null, { truncate: true, cascade: true, restartIdentity: true });
   }
+
 };

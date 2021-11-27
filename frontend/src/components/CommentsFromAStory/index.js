@@ -57,25 +57,18 @@ const CommentsFromAStory = () => {
 
 
   const [showMenu, setShowMenu] = useState(false);
+  const [hideBtn, setHideBtn] = useState(true);
 
   const openMenu = () => {
-    // if (showMenu) return;
     setShowMenu(true);
-    // document.getElementsByClassName("fa-2x")?.style.display = "none";
+    setHideBtn(false);
   };
 
-  // useEffect(() => {
-  //   if (!showMenu) return;
-
-  //   const closeMenu = () => {
-  //     setShowMenu(true);
-  //   };
-
-  //   document.addEventListener('click', closeMenu);
-
-  //   return () => document.removeEventListener("click", closeMenu);
-  // }, [showMenu]);
-
+  const cancelMenu = () => {
+    setInputValue("");
+    setShowMenu(false);
+    setHideBtn(true);
+  };
 
 
 
@@ -91,7 +84,7 @@ const CommentsFromAStory = () => {
 
   // posting new comment
   async function handlePost(e) {
-    // e.preventDefault();
+    e.preventDefault();
     // e.stopPropagation();
 
     let createdComment
@@ -101,8 +94,14 @@ const CommentsFromAStory = () => {
       body: inputValue
     }
 
+    setShowMenu(false);
+    setHideBtn(true);
+
     await dispatch(postComment(createdComment))
-    // history.push(`/stories/${urlStoryId}`);
+
+    dispatch(getComments());
+
+    setInputValue("");
   }
 
 
@@ -111,6 +110,7 @@ const CommentsFromAStory = () => {
   async function handleDelete(commentId) {
     await dispatch(deleteComment(commentId))
     // history.push('/')
+    dispatch(getComments());
   }
 
 
@@ -119,14 +119,16 @@ const CommentsFromAStory = () => {
       <div className="storyCommentsContainer">
         {(sessionUser) &&
         <div className="storyCommentsDiv">
-          <i onClick={openMenu} className="fas fa-plus-circle fa-2x" style={{display:"block"}}><span id="newComment"> New comment</span></i>
-          
+          {hideBtn && (
+          <i onClick={openMenu} className="fas fa-plus-circle fa-2x" style={{visibility:"visible"}}><span id="newComment"> New comment</span></i>
+          )}
 
             {showMenu && (
               <div className="commentFormDiv">
                 <form onSubmit={handlePost}>
                   <div>
                       <textarea
+                        id="commentTextbox"
                         value={inputValue}
                         onChange={(e) => setInputValue(e.target.value)}
                         placeholder="Type your comment here."
@@ -135,9 +137,7 @@ const CommentsFromAStory = () => {
                         required
                       />
                   </div>
-                  <a href={`/stories/${urlStoryId}`} className='cancelButton'>
-                    <button type="button">Cancel</button>
-                  </a>
+                  <button onClick={cancelMenu} type="button">Cancel</button>
                   <button>Submit</button>
                 </form>
               </div>
@@ -166,9 +166,9 @@ const CommentsFromAStory = () => {
                     </NavLink>
                     }
                     {(sessionUser?.id === comment?.userId) &&
-                    <a href={`/stories/${urlStoryId}`}>
+
                       <button className='commentDeleteButton' onClick={() => {handleDelete(comment?.id)}}>Delete</button>
-                    </a>
+
                     }
                     </table>
                 </td>
