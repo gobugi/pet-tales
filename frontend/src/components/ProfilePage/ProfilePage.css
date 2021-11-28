@@ -214,3 +214,37 @@
 #followDivContainer:hover {
   cursor: default;
 }
+
+#followingSpan>a {
+  text-decoration: none;
+  color: #926B2B;
+}
+
+#followersSpan>a {
+  text-decoration: none;
+  color: #926B2B;
+}
+
+#followingSpan>a:active {
+  color: #926B2B;
+}
+
+#followingSpan>a:visited {
+  color: #926B2B;
+}
+
+#followingSpan>a:link {
+  color: #926B2B;
+}
+
+#followersSpan>a:active {
+  color: #926B2B;
+}
+
+#followersSpan>a:visited {
+  color: #926B2B;
+}
+
+#followersSpan>a:link {
+  color: #926B2B;
+}

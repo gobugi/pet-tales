@@ -201,7 +201,7 @@ const remFollow = async (e) => {
 
       {currentUserId === +userId &&
           <div id="followDivContainer">
-            <span id="followingDiv">
+            {/* <span id="followingDiv">
               {!followingUsernames?.length && <strong>- </strong>}
               <strong>Following - </strong>
               {followingUsernames?.map((usr, i) => (i === followingUsernames?.length - 1 ? `${usr?.username}` : `${usr?.username}, `))}
@@ -210,7 +210,26 @@ const remFollow = async (e) => {
               {!followerUsernames?.length && <strong>- </strong>}
               <strong>Followers - </strong>
               {followerUsernames?.map((usr, i) => (i === followerUsernames?.length - 1 ? `${usr?.username}` : `${usr?.username}, `))}
+            </span> */}
+
+            <span id="followingSpan">
+              {!followingUsernames?.length && <strong>-</strong>}
+              {!followingUsernames?.length && ' 0'}
+              <strong> Following - </strong>
+              {followingUsernames?.map((user, i) => (
+                i === followingUsernames?.length - 1 ? <a href={`/users/${user?.id}`}>{user?.username}</a> : <a href={`/users/${user?.id}`}>{user?.username}, </a>
+              ))}
             </span>
+
+            <span id="followersSpan">
+              {!followerUsernames?.length && <strong>-</strong>}
+              {!followerUsernames?.length && ' 0'}
+              <strong> Followers - </strong>
+              {followerUsernames?.map((user, i) => (
+                i === followerUsernames?.length - 1 ? <a href={`/users/${user?.id}`}>{user?.username}</a> : <a href={`/users/${user?.id}`}>{user?.username}, </a>
+              ))}
+            </span>
+
           </div>
       }
 
