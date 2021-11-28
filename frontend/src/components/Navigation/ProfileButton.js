@@ -52,7 +52,7 @@ function ProfileButton({ user }) {
         <div>
           <ul className="profile-dropdown" style={{listStyleType: 'none'}}>
             <li key={user.id}>
-              <NavLink style={{textDecoration: 'none'}} exact to={`/users/${user.id}`}>{user.username}</NavLink>
+              <a style={{textDecoration: 'none'}} href={`/users/${user.id}`}>{user.username}</a>
             </li>
             <li key={user.email}>{user.email}</li>
             <li key={user.username}>
