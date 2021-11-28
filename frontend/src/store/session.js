@@ -1,5 +1,6 @@
 import { csrfFetch } from './csrf';
 
+
 // Define Action Types as Constants (login/logout)
 const SET_USER = 'session/setUser';
 const REMOVE_USER = 'session/removeUser';

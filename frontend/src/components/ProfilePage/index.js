@@ -36,6 +36,7 @@ const ProfilePage = () => {
   const [followerUsernames, setFollowerUsernames] = useState([]);
 
 
+
   useEffect(() => {
 
     async function all_follows() {
@@ -52,6 +53,7 @@ const ProfilePage = () => {
 
 
 /////////////////////////////////////////////////////////
+
       responseData?.forEach(follow => {
         if (follow?.followerId === +userId) {
           followingUserIdsArr?.push(follow?.userId)
@@ -61,12 +63,13 @@ const ProfilePage = () => {
       const followingUsernamesArr = [];
       resData?.forEach(user => {
         if (followingUserIdsArr?.includes(user?.id)) {
-          followingUsernamesArr?.push(user?.username)
+          followingUsernamesArr?.push(user)
         }
       });
 
+
       setFollowingUsernames(followingUsernamesArr?.sort(function(a, b) {
-        return a?.toLowerCase()?.localeCompare(b?.toLowerCase());
+        return a?.username?.toLowerCase()?.localeCompare(b?.username?.toLowerCase());
       }))
 
 ////////////////////////////////////////////////////
@@ -80,12 +83,12 @@ const ProfilePage = () => {
       const followerUsernamesArr = [];
       resData?.forEach(user => {
         if (followerUserIdsArr?.includes(user?.id)) {
-          followerUsernamesArr?.push(user?.username)
+          followerUsernamesArr?.push(user)
         }
       });
 
       setFollowerUsernames(followerUsernamesArr?.sort(function(a, b) {
-        return a?.toLowerCase()?.localeCompare(b?.toLowerCase());
+        return a?.username?.toLowerCase()?.localeCompare(b?.username?.toLowerCase());
       }))
 ////////////////////////////////////////////////////
 
@@ -118,7 +121,7 @@ const ProfilePage = () => {
 		}
 
     all_follows();
-	}, []);
+	}, [currentFollow]);
 
 
 
@@ -163,20 +166,15 @@ const ProfilePage = () => {
 const remFollow = async (e) => {
   e.preventDefault();
 
-  const response = await csrfFetch(`/api/follows/${currentFollow?.id}`, {
+  const resp = await csrfFetch(`/api/follows/${currentFollow?.id}`, {
     method: 'DELETE'
   });
 
-
-  if (response.ok) {
+  if (resp.ok) {
     document.getElementById("followBtn")?.setAttribute("style","display:block;");
     document.getElementById("unfollowBtn")?.setAttribute("style","display:none;");
   }
-
-  setCurrentFollow([]);
-
 };
-
 
 
 
@@ -204,12 +202,14 @@ const remFollow = async (e) => {
       {currentUserId === +userId &&
           <div id="followDivContainer">
             <span id="followingDiv">
+              {!followingUsernames?.length && <strong>- </strong>}
               <strong>Following - </strong>
-              {followingUsernames?.length && followingUsernames?.map((username, i) => (i === followingUsernames?.length - 1 ? `${username}` : `${username}, `))}
+              {followingUsernames?.map((usr, i) => (i === followingUsernames?.length - 1 ? `${usr?.username}` : `${usr?.username}, `))}
             </span>
             <span id="followersDiv">
+              {!followerUsernames?.length && <strong>- </strong>}
               <strong>Followers - </strong>
-              {followerUsernames?.length && followerUsernames?.map((username, i) => (i === followerUsernames?.length - 1 ? `${username}` : `${username}, `))}
+              {followerUsernames?.map((usr, i) => (i === followerUsernames?.length - 1 ? `${usr?.username}` : `${usr?.username}, `))}
             </span>
           </div>
       }

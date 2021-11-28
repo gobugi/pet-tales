@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
 // import { Redirect } from 'react-router-dom';
 
 function ProfileButton({ user }) {
+  const history = useHistory();
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
+
 
   const openMenu = () => {
     if (showMenu) return;
@@ -28,16 +30,18 @@ function ProfileButton({ user }) {
   const logout = (e) => {
     e.preventDefault();
     dispatch(sessionActions.logout());
+    window.location.href = "/";
   };
 
   const redirectHome = (e) => {
-    window.location.href = "/";
+    history.push("/");
+
   }
 
   const logoutAndRedirect = (e) => {
     e.preventDefault();
     logout(e);
-    redirectHome(e);
+    redirectHome();
   }
 
 
